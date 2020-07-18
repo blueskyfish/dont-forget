@@ -1,0 +1,80 @@
+
+@mixin dialog($width: null, $height: null) {
+  :host {
+    display: block;
+
+    .dialog {
+      @include display-flex(column);
+
+      background-color: mat-color($background-palette, dialog);
+      border: 1px solid $border-color;
+      border-radius: $border-radius / 2;
+
+      width: 95vw;
+      max-height: 80vh;
+
+      position: fixed;
+      left: $half-gap;
+      bottom: $half-gap;
+      right: $half-gap;
+      margin: 0 auto;
+
+      &.on-top {
+        top: $navbar-height + $full-gap;
+        bottom: unset;
+      }
+
+
+      @include device-large() {
+
+        @if($width) {
+          @include absWidth($width);
+        } @else {
+          max-width: 60vw;
+        }
+        @if($height) {
+          @include absHeight($height);
+        } @else {
+          max-height: 80vh;
+          @include small-view() {
+            max-height: 95vh;
+          }
+        }
+
+        position: relative;
+        top: unset;
+        right: unset;
+        bottom: unset;
+        left: unset;
+
+        &.on-top {
+          top: unset;
+        }
+      }
+
+
+      .dialog-title {
+        @include flex-fixed();
+        padding: $half-gap;
+        margin: 0 0;
+        font-size: 1.2rem;
+      }
+
+      .dialog-content {
+        @include flex-resizable();
+        overflow: auto;
+        padding: 0 $half-gap;
+        overflow-x: hidden;
+      }
+
+      .dialog-actions {
+        @include flex-fixed();
+        @include display-flex(row);
+        justify-content: flex-end;
+        padding: $half-gap;
+      }
+
+      @content;
+    }
+  }
+}

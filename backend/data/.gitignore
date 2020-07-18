@@ -1,0 +1,4 @@
+
+*.db-journal
+*.db
+about.json

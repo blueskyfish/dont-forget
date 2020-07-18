@@ -1,0 +1,12 @@
+
+@mixin absHeight($height) {
+  height: $height;
+  min-height: $height;
+  max-height: $height;
+}
+
+@mixin absWidth($width) {
+  width: $width;
+  min-width: $width;
+  max-width: $width;
+}

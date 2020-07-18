@@ -1,0 +1,26 @@
+//
+// Normalize is for all elements
+//
+
+html, html body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  @include display-flex(column);
+
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+
+  position: relative;
+
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@import "normalize/form";

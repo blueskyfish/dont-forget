@@ -1,0 +1,10 @@
+
+@mixin nowrapWithEllipsis() {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin nowrap() {
+  white-space: nowrap;
+}

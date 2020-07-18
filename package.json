@@ -1,0 +1,25 @@
+{
+  "name": "@blueskyfish/dont-forget-app",
+  "version": "0.0.1",
+  "description": "A small application for things that should not be forgotten",
+  "author": {
+    "email": "blueskyfish@blueskyfish.de",
+    "name": "Blueskyfish",
+    "url": "https://blueskyfish.de"
+  },
+  "license": "MIT",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/blueskyfish/dont-forget.git"
+  },
+  "scripts": {
+
+  },
+  "dependencies": {
+
+  },
+  "devDependencies": {
+
+  }
+}

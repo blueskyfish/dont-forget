@@ -1,0 +1,28 @@
+
+@mixin display-flex($direction, $wrap: nowrap) {
+  display: flex;
+  flex-direction: $direction;
+  flex-wrap: $wrap;
+}
+
+@mixin flex-resizable($basis: auto, $grow: 1, $shrink: 1) {
+  flex-basis: $basis;
+  flex-grow: $grow;
+  flex-shrink: $shrink;
+}
+
+@mixin flex-fixed($basis: auto) {
+  flex-basis: $basis;
+  flex-grow: 0;
+  flex-shrink: 1; // TODO perhaps it is 0 (Zero)
+}
+
+@mixin on-host($direction, $wrap: nowrap) {
+  :host {
+    @include display-flex($direction, $wrap);
+    @include flex-resizable();
+    overflow: auto;
+
+    @content;
+  }
+}
