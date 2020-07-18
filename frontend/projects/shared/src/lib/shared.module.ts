@@ -1,12 +1,18 @@
 import { NgModule } from '@angular/core';
-import { SharedComponent } from './shared.component';
+import { BackendModule } from 'projects/shared/src/lib/backend';
+import { environment } from 'src/environments/environment';
 
 
 
 @NgModule({
-  declarations: [SharedComponent],
+  declarations: [],
   imports: [
+    BackendModule.forRoot({
+      rootUrl: environment.backendApi,
+    }),
   ],
-  exports: [SharedComponent]
+  exports: [
+    BackendModule,
+  ]
 })
 export class SharedModule { }
