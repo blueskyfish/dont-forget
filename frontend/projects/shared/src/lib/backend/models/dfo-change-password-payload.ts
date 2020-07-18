@@ -1,5 +1,5 @@
 /* tslint:disable */
-export interface ChangePasswordPayload {
+export interface DfoChangePasswordPayload {
 
   /**
    * The current password

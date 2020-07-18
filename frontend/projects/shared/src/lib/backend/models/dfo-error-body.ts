@@ -1,5 +1,5 @@
 /* tslint:disable */
-export interface ErrorBody {
+export interface DfoErrorBody {
 
   /**
    * The error code

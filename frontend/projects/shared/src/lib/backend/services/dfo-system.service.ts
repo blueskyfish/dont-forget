@@ -1,22 +1,22 @@
 /* tslint:disable */
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { BaseService } from '../base-service';
-import { BackendConfig } from '../backend-config';
-import { BackendResponse } from '../backend-response';
-import { RequestBuilder } from '../request-builder';
+import { DfoBaseService } from '../dfo-base-service';
+import { DfoBackendConfig } from '../dfo-backend-config';
+import { DfoHttpResponse } from '../dfo-http-response';
+import { DfoRequestBuilder } from '../dfo-request-builder';
 import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
-import { About } from '../models/about';
-import { Alive } from '../models/alive';
+import { DfoAbout } from '../models/dfo-about';
+import { DfoAlive } from '../models/dfo-alive';
 
 @Injectable({
   providedIn: 'root',
 })
-export class SystemService extends BaseService {
+export class DfoSystemService extends DfoBaseService {
   constructor(
-    config: BackendConfig,
+    config: DfoBackendConfig,
     http: HttpClient
   ) {
     super(config, http);
@@ -42,9 +42,9 @@ export class SystemService extends BaseService {
      */
     name?: string;
 
-  }): Observable<BackendResponse<string>> {
+  }): Observable<DfoHttpResponse<string>> {
 
-    const rb = new RequestBuilder(this.rootUrl, SystemService.GetHelloPath, 'get');
+    const rb = new DfoRequestBuilder(this.rootUrl, DfoSystemService.GetHelloPath, 'get');
     if (params) {
 
       rb.query('name', params.name, {});
@@ -56,7 +56,7 @@ export class SystemService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as BackendResponse<string>;
+        return r as DfoHttpResponse<string>;
       })
     );
   }
@@ -79,7 +79,7 @@ export class SystemService extends BaseService {
   }): Observable<string> {
 
     return this.getHello$Response(params).pipe(
-      map((r: BackendResponse<string>) => r.body as string)
+      map((r: DfoHttpResponse<string>) => r.body as string)
     );
   }
 
@@ -98,9 +98,9 @@ export class SystemService extends BaseService {
    */
   alive$Response(params?: {
 
-  }): Observable<BackendResponse<Alive>> {
+  }): Observable<DfoHttpResponse<DfoAlive>> {
 
-    const rb = new RequestBuilder(this.rootUrl, SystemService.AlivePath, 'get');
+    const rb = new DfoRequestBuilder(this.rootUrl, DfoSystemService.AlivePath, 'get');
     if (params) {
 
 
@@ -111,7 +111,7 @@ export class SystemService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as BackendResponse<Alive>;
+        return r as DfoHttpResponse<DfoAlive>;
       })
     );
   }
@@ -126,10 +126,10 @@ export class SystemService extends BaseService {
    */
   alive(params?: {
 
-  }): Observable<Alive> {
+  }): Observable<DfoAlive> {
 
     return this.alive$Response(params).pipe(
-      map((r: BackendResponse<Alive>) => r.body as Alive)
+      map((r: DfoHttpResponse<DfoAlive>) => r.body as DfoAlive)
     );
   }
 
@@ -148,9 +148,9 @@ export class SystemService extends BaseService {
    */
   getAbout$Response(params?: {
 
-  }): Observable<BackendResponse<About>> {
+  }): Observable<DfoHttpResponse<DfoAbout>> {
 
-    const rb = new RequestBuilder(this.rootUrl, SystemService.GetAboutPath, 'get');
+    const rb = new DfoRequestBuilder(this.rootUrl, DfoSystemService.GetAboutPath, 'get');
     if (params) {
 
 
@@ -161,7 +161,7 @@ export class SystemService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as BackendResponse<About>;
+        return r as DfoHttpResponse<DfoAbout>;
       })
     );
   }
@@ -176,10 +176,10 @@ export class SystemService extends BaseService {
    */
   getAbout(params?: {
 
-  }): Observable<About> {
+  }): Observable<DfoAbout> {
 
     return this.getAbout$Response(params).pipe(
-      map((r: BackendResponse<About>) => r.body as About)
+      map((r: DfoHttpResponse<DfoAbout>) => r.body as DfoAbout)
     );
   }
 

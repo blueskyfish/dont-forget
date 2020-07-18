@@ -1,5 +1,5 @@
 /* tslint:disable */
-export interface About {
+export interface DfoAbout {
   author: string;
   branch: string;
   branchDate: string;

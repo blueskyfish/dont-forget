@@ -1,5 +1,5 @@
 /* tslint:disable */
-export interface RegisterPayload {
+export interface DfoRegisterPayload {
 
   /**
    * The access code

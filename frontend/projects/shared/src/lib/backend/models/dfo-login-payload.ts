@@ -1,5 +1,5 @@
 /* tslint:disable */
-export interface LoginPayload {
+export interface DfoLoginPayload {
 
   /**
    * The email address of the user

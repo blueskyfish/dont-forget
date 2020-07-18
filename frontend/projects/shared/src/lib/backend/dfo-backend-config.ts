@@ -7,13 +7,13 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
-export class BackendConfig {
+export class DfoBackendConfig {
   rootUrl: string = '';
 }
 
 /**
- * Parameters for `BackendModule.forRoot()`
+ * Parameters for `DfoBackendModule.forRoot()`
  */
-export interface BackendConfigParams {
+export interface DfoBackendConfigParams {
   rootUrl?: string;
 }

@@ -39,8 +39,6 @@ function buildErrorMessages(errors: ValidationError[]): string[] {
  *     "message": "Entities with validation errors",
  *     "stack": [
  *         "validate.parameters: Entities with validation errors",
- *         "    at ValidationPipe.exceptionFactory (/Users/sarah/Projects/blueskyfish/github/nestjs-backend-starter/dist/main.js:27:20)",
- *         "    at async /Users/sarah/Projects/blueskyfish/github/nestjs-backend-starter/node_modules/@nestjs/core/router/router-proxy.js:8:17"
  *     ],
  *     "data": {
  *         "errors": ["message1", "message2"]

@@ -12,7 +12,7 @@
       },
       "root": "projects/webapp",
       "sourceRoot": "projects/webapp/src",
-      "prefix": "app",
+      "prefix": "dfo",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -30,7 +30,10 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "lodash"
+            ]
           },
           "configurations": {
             "production": {
@@ -133,7 +136,7 @@
       },
       "root": "projects/admin",
       "sourceRoot": "projects/admin/src",
-      "prefix": "app",
+      "prefix": "dfo",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -151,7 +154,10 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "lodash"
+            ]
           },
           "configurations": {
             "production": {

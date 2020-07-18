@@ -1,5 +1,5 @@
 /* tslint:disable */
-export interface UserInfo {
+export interface DfoLoginUser {
 
   /**
    * The email of the user
@@ -20,4 +20,9 @@ export interface UserInfo {
    * The roles of the user
    */
   roles: Array<string>;
+
+  /**
+   * This is the user token for his authentication at protected endpoints
+   */
+  token: string;
 }

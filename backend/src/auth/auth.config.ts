@@ -2,7 +2,7 @@
 /**
  * The http header name for the authorization token
  */
-export const HTTP_AUTH_HEADER = 'x-bicycle-token';
+export const HTTP_AUTH_HEADER = 'x-dont-forget';
 
 export const API_KEY_NAME = 'ApiKey';
 

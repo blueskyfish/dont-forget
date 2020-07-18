@@ -1,8 +1,8 @@
-export { ErrorBody } from './models/error-body';
-export { Alive } from './models/alive';
-export { About } from './models/about';
-export { LoginPayload } from './models/login-payload';
-export { LoginUser } from './models/login-user';
-export { RegisterPayload } from './models/register-payload';
-export { UserInfo } from './models/user-info';
-export { ChangePasswordPayload } from './models/change-password-payload';
+export { DfoErrorBody } from './models/dfo-error-body';
+export { DfoAlive } from './models/dfo-alive';
+export { DfoAbout } from './models/dfo-about';
+export { DfoLoginPayload } from './models/dfo-login-payload';
+export { DfoLoginUser } from './models/dfo-login-user';
+export { DfoRegisterPayload } from './models/dfo-register-payload';
+export { DfoUserInfo } from './models/dfo-user-info';
+export { DfoChangePasswordPayload } from './models/dfo-change-password-payload';

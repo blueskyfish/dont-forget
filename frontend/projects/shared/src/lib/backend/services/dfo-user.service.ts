@@ -1,25 +1,25 @@
 /* tslint:disable */
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { BaseService } from '../base-service';
-import { BackendConfig } from '../backend-config';
-import { BackendResponse } from '../backend-response';
-import { RequestBuilder } from '../request-builder';
+import { DfoBaseService } from '../dfo-base-service';
+import { DfoBackendConfig } from '../dfo-backend-config';
+import { DfoHttpResponse } from '../dfo-http-response';
+import { DfoRequestBuilder } from '../dfo-request-builder';
 import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
-import { ChangePasswordPayload } from '../models/change-password-payload';
-import { LoginPayload } from '../models/login-payload';
-import { LoginUser } from '../models/login-user';
-import { RegisterPayload } from '../models/register-payload';
-import { UserInfo } from '../models/user-info';
+import { DfoChangePasswordPayload } from '../models/dfo-change-password-payload';
+import { DfoLoginPayload } from '../models/dfo-login-payload';
+import { DfoLoginUser } from '../models/dfo-login-user';
+import { DfoRegisterPayload } from '../models/dfo-register-payload';
+import { DfoUserInfo } from '../models/dfo-user-info';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UserService extends BaseService {
+export class DfoUserService extends DfoBaseService {
   constructor(
-    config: BackendConfig,
+    config: DfoBackendConfig,
     http: HttpClient
   ) {
     super(config, http);
@@ -39,10 +39,10 @@ export class UserService extends BaseService {
    * This method sends `application/json` and handles request body of type `application/json`.
    */
   login$Response(params: {
-      body: LoginPayload
-  }): Observable<BackendResponse<LoginUser>> {
+      body: DfoLoginPayload
+  }): Observable<DfoHttpResponse<DfoLoginUser>> {
 
-    const rb = new RequestBuilder(this.rootUrl, UserService.LoginPath, 'put');
+    const rb = new DfoRequestBuilder(this.rootUrl, DfoUserService.LoginPath, 'put');
     if (params) {
 
 
@@ -54,7 +54,7 @@ export class UserService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as BackendResponse<LoginUser>;
+        return r as DfoHttpResponse<DfoLoginUser>;
       })
     );
   }
@@ -68,11 +68,11 @@ export class UserService extends BaseService {
    * This method sends `application/json` and handles request body of type `application/json`.
    */
   login(params: {
-      body: LoginPayload
-  }): Observable<LoginUser> {
+      body: DfoLoginPayload
+  }): Observable<DfoLoginUser> {
 
     return this.login$Response(params).pipe(
-      map((r: BackendResponse<LoginUser>) => r.body as LoginUser)
+      map((r: DfoHttpResponse<DfoLoginUser>) => r.body as DfoLoginUser)
     );
   }
 
@@ -90,10 +90,10 @@ export class UserService extends BaseService {
    * This method sends `application/json` and handles request body of type `application/json`.
    */
   register$Response(params: {
-      body: RegisterPayload
-  }): Observable<BackendResponse<LoginUser>> {
+      body: DfoRegisterPayload
+  }): Observable<DfoHttpResponse<DfoLoginUser>> {
 
-    const rb = new RequestBuilder(this.rootUrl, UserService.RegisterPath, 'post');
+    const rb = new DfoRequestBuilder(this.rootUrl, DfoUserService.RegisterPath, 'post');
     if (params) {
 
 
@@ -105,7 +105,7 @@ export class UserService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as BackendResponse<LoginUser>;
+        return r as DfoHttpResponse<DfoLoginUser>;
       })
     );
   }
@@ -119,11 +119,11 @@ export class UserService extends BaseService {
    * This method sends `application/json` and handles request body of type `application/json`.
    */
   register(params: {
-      body: RegisterPayload
-  }): Observable<LoginUser> {
+      body: DfoRegisterPayload
+  }): Observable<DfoLoginUser> {
 
     return this.register$Response(params).pipe(
-      map((r: BackendResponse<LoginUser>) => r.body as LoginUser)
+      map((r: DfoHttpResponse<DfoLoginUser>) => r.body as DfoLoginUser)
     );
   }
 
@@ -142,9 +142,9 @@ export class UserService extends BaseService {
    */
   getInfo$Response(params?: {
 
-  }): Observable<BackendResponse<UserInfo>> {
+  }): Observable<DfoHttpResponse<DfoUserInfo>> {
 
-    const rb = new RequestBuilder(this.rootUrl, UserService.GetInfoPath, 'get');
+    const rb = new DfoRequestBuilder(this.rootUrl, DfoUserService.GetInfoPath, 'get');
     if (params) {
 
 
@@ -155,7 +155,7 @@ export class UserService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as BackendResponse<UserInfo>;
+        return r as DfoHttpResponse<DfoUserInfo>;
       })
     );
   }
@@ -170,10 +170,10 @@ export class UserService extends BaseService {
    */
   getInfo(params?: {
 
-  }): Observable<UserInfo> {
+  }): Observable<DfoUserInfo> {
 
     return this.getInfo$Response(params).pipe(
-      map((r: BackendResponse<UserInfo>) => r.body as UserInfo)
+      map((r: DfoHttpResponse<DfoUserInfo>) => r.body as DfoUserInfo)
     );
   }
 
@@ -191,10 +191,10 @@ export class UserService extends BaseService {
    * This method sends `application/json` and handles request body of type `application/json`.
    */
   changePassword$Response(params: {
-      body: ChangePasswordPayload
-  }): Observable<BackendResponse<UserInfo>> {
+      body: DfoChangePasswordPayload
+  }): Observable<DfoHttpResponse<DfoUserInfo>> {
 
-    const rb = new RequestBuilder(this.rootUrl, UserService.ChangePasswordPath, 'put');
+    const rb = new DfoRequestBuilder(this.rootUrl, DfoUserService.ChangePasswordPath, 'put');
     if (params) {
 
 
@@ -206,7 +206,7 @@ export class UserService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as BackendResponse<UserInfo>;
+        return r as DfoHttpResponse<DfoUserInfo>;
       })
     );
   }
@@ -220,11 +220,11 @@ export class UserService extends BaseService {
    * This method sends `application/json` and handles request body of type `application/json`.
    */
   changePassword(params: {
-      body: ChangePasswordPayload
-  }): Observable<UserInfo> {
+      body: DfoChangePasswordPayload
+  }): Observable<DfoUserInfo> {
 
     return this.changePassword$Response(params).pipe(
-      map((r: BackendResponse<UserInfo>) => r.body as UserInfo)
+      map((r: DfoHttpResponse<DfoUserInfo>) => r.body as DfoUserInfo)
     );
   }
 

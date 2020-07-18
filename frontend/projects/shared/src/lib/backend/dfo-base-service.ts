@@ -1,15 +1,15 @@
 /* tslint:disable */
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BackendConfig } from './backend-config';
+import { DfoBackendConfig } from './dfo-backend-config';
 
 /**
  * Base class for services
  */
 @Injectable()
-export class BaseService {
+export class DfoBaseService {
   constructor(
-    protected config: BackendConfig,
+    protected config: DfoBackendConfig,
     protected http: HttpClient
   ) {
   }
@@ -18,7 +18,7 @@ export class BaseService {
 
   /**
    * Returns the root url for all operations in this service. If not set directly in this
-   * service, will fallback to `BackendConfig.rootUrl`.
+   * service, will fallback to `DfoBackendConfig.rootUrl`.
    */
   get rootUrl(): string {
     return this._rootUrl || this.config.rootUrl;

@@ -1,5 +1,5 @@
 /* tslint:disable */
-export interface Alive {
+export interface DfoAlive {
 
   /**
    * The duration

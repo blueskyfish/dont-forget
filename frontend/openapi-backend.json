@@ -3,11 +3,13 @@
   "input": "http://localhost:17050/openapi.json",
   "output": "projects/shared/src/lib/backend",
   "modelIndex": true,
-  "module": "BackendModule",
-  "configuration": "BackendConfig",
-  "requestBuilder": "RequestBuilder",
-  "baseService": "BaseService",
+  "module": "DfoBackendModule",
+  "modelPrefix": "Dfo",
+  "configuration": "DfoBackendConfig",
+  "requestBuilder": "DfoRequestBuilder",
+  "baseService": "DfoBaseService",
   "indexFile": true,
-  "response": "BackendResponse",
-  "serviceIndex": true
+  "response": "DfoHttpResponse",
+  "serviceIndex": true,
+  "servicePrefix": "Dfo"
 }
