@@ -13,4 +13,5 @@ module.exports = {
       to: 'http://localhost:17090/$1'
     }
   ],
+  directory: "src/"
 }
