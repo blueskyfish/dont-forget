@@ -1,0 +1,23 @@
+
+@import "~src/scss/gobals";
+
+@include on-host(column) {
+
+  .view-register {
+    @include flex-resizable();
+    @include display-flex(column);
+    overflow: auto;
+
+    .form {
+
+      .picture-box {
+        @include absHeight(6rem);
+
+        dfo-picture-list {
+          margin: 0 auto 1rem auto;
+        }
+      }
+    }
+
+  }
+}

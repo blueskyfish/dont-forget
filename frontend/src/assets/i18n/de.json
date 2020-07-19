@@ -1,0 +1,58 @@
+{
+  "app": {
+    "title": "Don't Forget",
+    "login-view": {
+      "title": "Anmelden bei Don't Forget",
+      "label": {
+        "email": "E-Mail",
+        "password": "Passwort"
+      },
+      "command": {
+        "login": "Anmelden"
+      },
+      "message": {
+        "title": "Registrieren",
+        "text": "Oder einen neuen Account erstellen ..."
+      },
+      "error": {
+        "title": "Fehler bei Anmeldung"
+      }
+    },
+    "register-view": {
+      "title": "Einen neuen Account erstellen",
+      "label": {
+        "name": "Name",
+        "email": "E-Mail",
+        "password": "Passwort",
+        "repeat": "Wiederholung",
+        "accessCode": "Einladungscode",
+        "term": "Bedingungen und Konditionen"
+      },
+      "command": {
+        "register": "Registrieren"
+      },
+      "message": {
+        "title": "Anmelden",
+        "text": "Oder im vorhandenen Account einloggen ..."
+      },
+      "error": {
+        "title": "Fehler beim Registrieren"
+      }
+    },
+    "error": {
+      "server": {
+        "user": {
+          "login": "Beim Anmeldung ist ein unbekannter Fehler mit dem Server aufgetreten.",
+          "register": "Beim Registrieren is ein unbekannter Fehler mit dem Server aufgetreten."
+        }
+      },
+      "user": {
+        "notFound": "Die Kombination von E-Mail und Passwort stimmt nicht. Bitte korrigieren Sie Ihre Eingaben",
+        "existEmail": "Die E-Mail Adresse wird von jemand anderen schon benutzt. Bitte eine andere E-Mail verwenden.",
+        "register": "Die Registrierung ist fehlgeschlagen. Probieren Sie es etwas später noch einmal.",
+        "passwordFailure": "Das Passwort ändern ist fehlgeschlagen.",
+        "accessCodeInvalid": "Der Einladungscode ist leider nicht bekannt. Bitte geben Sie den korrekten Code ein."
+      }
+    }
+  }
+}

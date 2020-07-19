@@ -1,0 +1,43 @@
+
+@import "~src/scss/gobals";
+
+@include on-host(column) {
+  .message-box {
+    display: block;
+    padding: $half-gap $full-gap 0;
+    border-radius: $border-radius-small;
+    margin-bottom: 1rem;
+
+    &.normal {
+      background-color: mat-color($mat-grey, 100);
+      border: $border solid mat-color($mat-grey, 500);
+    }
+
+    &.info {
+      background-color: mat-color($mat-yellow, 100);
+      border: $border solid mat-color($mat-yellow, 500);
+    }
+
+    &.warn {
+      background-color: mat-color($mat-red, 100);
+      border: $border solid mat-color($mat-red, 500);
+    }
+
+    .title-box {
+      @include display-flex(row);
+      align-items: center;
+      margin-bottom: $full-gap;
+
+      .title {
+        @include flex-resizable();
+        margin: 0;
+        padding: 0;
+      }
+
+      .close {
+        @include flex-fixed();
+        margin-left: $full-gap;
+      }
+    }
+  }
+}

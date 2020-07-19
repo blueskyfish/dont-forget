@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Action, State, StateContext, StateToken } from '@ngxs/store';
 import { DfoLoginUser, DfoUserInfo, DfoUserService } from 'projects/shared/src/lib/backend';
+import { RouteNames } from 'projects/shared/src/lib/common';
 import { AuthService } from 'projects/shared/src/lib/common/service';
 import { Util } from 'projects/shared/src/lib/common/util';
-import { StartApp } from 'projects/shared/src/lib/store/actions';
+import { RouteNavigate, StartApp } from 'projects/shared/src/lib/store/actions';
 import { errorHandler } from 'projects/shared/src/lib/store/error/error.handler';
-import { LoginUser } from 'projects/shared/src/lib/store/user/user.actions';
+import { LoginUser, RegisterUser } from 'projects/shared/src/lib/store/user/user.actions';
 import { EMPTY } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 
 
 export interface UserStateModel {
@@ -47,9 +48,9 @@ export class UserState {
       return this.userService.getInfo()
         .pipe(
           tap((user: DfoUserInfo) => {
-            this.updateState(ctx, user);
+            UserState.updateState(ctx, user);
           }),
-          catchError(errorHandler(ctx, 'info'))
+          catchError(errorHandler(ctx, 'info')),
         );
     }
     return EMPTY;
@@ -59,16 +60,30 @@ export class UserState {
   loginUser(ctx: StateContext<UserStateModel>, {payload}: LoginUser) {
     return this.userService.login({ body: payload})
       .pipe(
-        tap((user: DfoLoginUser) => {
+        switchMap((user: DfoLoginUser) => {
           this.authService.updateToken(user.token);
-          this.updateState(ctx, user);
+          UserState.updateState(ctx, user);
+          return ctx.dispatch(new RouteNavigate([RouteNames.Root, RouteNames.Home]));
+        }),
+        catchError(errorHandler(ctx, 'login'))
+      );
+  }
+
+  @Action(RegisterUser)
+  registerUser(ctx: StateContext<UserStateModel>, {payload}: RegisterUser) {
+    return this.userService.register({body: payload})
+      .pipe(
+        switchMap((user: DfoLoginUser) => {
+          this.authService.updateToken(user.token);
+          UserState.updateState(ctx, user);
+          return ctx.dispatch(new RouteNavigate([RouteNames.Root, RouteNames.Home]));
         }),
         catchError(errorHandler(ctx, 'login'))
       );
   }
 
 
-  private updateState(ctx: StateContext<UserStateModel>, user: DfoUserInfo | DfoLoginUser) {
+  private static updateState(ctx: StateContext<UserStateModel>, user: DfoUserInfo | DfoLoginUser) {
     ctx.setState({
       id: user.id,
       name: user.name,

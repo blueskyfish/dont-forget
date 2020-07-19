@@ -1,11 +1,13 @@
-import { HttpClientModule } from '@angular/common/http';
-import { BrowserModule } from '@angular/platform-browser';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { DfoSharedModule } from 'projects/shared/src/lib/shared.module';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
+import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { DfoRoutingModule } from 'projects/admin/src/app/routing.module';
+import { DfoSharedModule } from 'projects/shared/src/lib/shared.module';
+import { httpLoaderFactory } from 'projects/webapp/src/app/app-config';
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
@@ -16,11 +18,42 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule,
     HttpClientModule,
 
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
+
+    MatIconModule,
+
     DfoSharedModule,
 
-    AppRoutingModule,
+    DfoRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+  constructor(
+    private iconRegistry: MatIconRegistry,
+    private sanitizer: DomSanitizer,
+    private translate: TranslateService
+  ) {
+    this.initializeIcons();
+    this.initialTranslate();
+  }
+
+
+  private initialTranslate(): void {
+    this.translate.setDefaultLang('de');
+    this.translate.use('de');
+  }
+
+  private initializeIcons(): void {
+    this.iconRegistry.addSvgIconSet(this.sanitizer.bypassSecurityTrustResourceUrl('./assets/mdi.svg'));
+  }
+
+}

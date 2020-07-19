@@ -34,8 +34,11 @@
             "tsConfig": "projects/webapp/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "projects/webapp/src/favicon.ico",
-              "projects/webapp/src/assets"
+              {
+                "glob": "**/*",
+                "input": "src/assets/",
+                "output": "/assets/"
+              }
             ],
             "styles": [
               "src/styles.scss"
@@ -43,7 +46,13 @@
             "scripts": [],
             "allowedCommonJsDependencies": [
               "lodash"
-            ]
+            ],
+            "extractCss": true,
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "projects/shared/src"
+              ]
+            }
           },
           "configurations": {
             "production": {
@@ -101,11 +110,14 @@
             "tsConfig": "projects/webapp/tsconfig.spec.json",
             "karmaConfig": "projects/webapp/karma.conf.js",
             "assets": [
-              "projects/webapp/src/favicon.ico",
-              "projects/webapp/src/assets"
+              {
+                "glob": "**/*",
+                "input": "src/assets/",
+                "output": "/assets/"
+              }
             ],
             "styles": [
-              "projects/webapp/src/styles.scss"
+              "src/styles.scss"
             ],
             "scripts": []
           }
@@ -168,8 +180,11 @@
             "tsConfig": "projects/admin/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "projects/admin/src/favicon.ico",
-              "projects/admin/src/assets"
+              {
+                "glob": "**/*",
+                "input": "src/assets/",
+                "output": "/assets/"
+              }
             ],
             "styles": [
               "src/styles.scss"
@@ -177,7 +192,13 @@
             "scripts": [],
             "allowedCommonJsDependencies": [
               "lodash"
-            ]
+            ],
+            "extractCss": true,
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "projects/shared/src"
+              ]
+            }
           },
           "configurations": {
             "production": {
@@ -235,11 +256,14 @@
             "tsConfig": "projects/admin/tsconfig.spec.json",
             "karmaConfig": "projects/admin/karma.conf.js",
             "assets": [
-              "projects/admin/src/favicon.ico",
-              "projects/admin/src/assets"
+              {
+                "glob": "**/*",
+                "input": "src/assets/",
+                "output": "/assets/"
+              }
             ],
             "styles": [
-              "projects/admin/src/styles.scss"
+              "src/styles.scss"
             ],
             "scripts": []
           }

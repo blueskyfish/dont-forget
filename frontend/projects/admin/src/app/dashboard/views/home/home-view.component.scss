@@ -1,0 +1,10 @@
+
+@import "~src/scss/gobals";
+
+@include on-host(column) {
+  .view-home {
+    @include flex-resizable();
+    @include display-flex(column);
+    overflow: auto;
+  }
+}

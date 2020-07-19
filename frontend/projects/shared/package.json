@@ -2,8 +2,27 @@
   "name": "shared",
   "version": "0.0.1",
   "peerDependencies": {
-    "@angular/common": "^10.0.4",
-    "@angular/core": "^10.0.4"
+    "@angular/animations": "~10.0.3",
+    "@angular/cdk": "^10.0.2",
+    "@angular/common": "~10.0.3",
+    "@angular/compiler": "~10.0.3",
+    "@angular/core": "~10.0.3",
+    "@angular/forms": "~10.0.3",
+    "@angular/material": "^10.0.2",
+    "@angular/platform-browser": "~10.0.3",
+    "@angular/platform-browser-dynamic": "~10.0.3",
+    "@angular/router": "~10.0.3",
+    "@ngneat/until-destroy": "^7.3.2",
+    "@ngx-translate/core": "^13.0.0",
+    "@ngx-translate/http-loader": "^6.0.0",
+    "@ngxs/storage-plugin": "^3.6.2",
+    "@ngxs/store": "^3.6.2",
+    "lodash": "^4.17.19",
+    "moment": "^2.27.0",
+    "rxjs": "~6.5.5",
+    "tslib": "^2.0.0",
+    "typeface-roboto": "0.0.75",
+    "zone.js": "~0.10.3"
   },
   "dependencies": {
     "tslib": "^2.0.0"

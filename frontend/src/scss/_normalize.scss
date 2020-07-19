@@ -9,6 +9,7 @@ html, html body {
 
 body {
   @include display-flex(column);
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 
   -webkit-user-select: none;
   -webkit-touch-callout: none;

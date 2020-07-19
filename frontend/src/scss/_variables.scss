@@ -4,28 +4,28 @@
 //
 // palettes
 //
-$bike-primary: mat-palette($mat-light-blue);
-$bike-accent:  mat-palette($mat-light-green);
-$bike-warn: mat-palette($mat-red);
+$dfo-primary: mat-palette($mat-light-blue);
+$dfo-accent:  mat-palette($mat-light-green);
+$dfo-warn: mat-palette($mat-red);
 
 //
 // theme
 //
-$bike-theme:   mat-light-theme($bike-primary, $bike-accent, $bike-warn);
+$dfo-theme:   mat-light-theme($dfo-primary, $dfo-accent, $dfo-warn);
 
 //
 // foreground- & background palettes
-$background-palette: map-get($bike-theme, background);
-$foreground-palette: map-get($bike-theme, foreground);
+$background-palette: map-get($dfo-theme, background);
+$foreground-palette: map-get($dfo-theme, foreground);
 
 //
 // colors
 //
 $divider-color: mat-color($foreground-palette, divider);
-$primary-color: mat-color($bike-primary, 500);
+$primary-color: mat-color($dfo-primary, 500);
 
 $active-background-color: mat-color($background-palette, selected-button);
-$active-text-color: mat-color($bike-primary, 600);
+$active-text-color: mat-color($dfo-primary, 600);
 
 
 //

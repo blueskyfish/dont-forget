@@ -1,0 +1,9 @@
+
+@import "scss/gobals";
+
+@import '~@angular/cdk/overlay-prebuilt.css';
+
+@include mat-core();
+@include angular-material-theme($dfo-theme);
+
+@import "scss/normalize";
