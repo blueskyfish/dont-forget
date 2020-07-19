@@ -5,10 +5,11 @@ import { RouteNames } from 'projects/shared/src/lib/common';
 import { AuthService } from 'projects/shared/src/lib/common/service';
 import { Util } from 'projects/shared/src/lib/common/util';
 import { RouteNavigate, StartApp } from 'projects/shared/src/lib/store/actions';
+import { RemoveLastError } from 'projects/shared/src/lib/store/error';
 import { errorHandler } from 'projects/shared/src/lib/store/error/error.handler';
 import { LoginUser, RegisterUser } from 'projects/shared/src/lib/store/user/user.actions';
 import { EMPTY } from 'rxjs';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, switchMap, tap } from 'rxjs/operators';
 
 
 export interface UserStateModel {
@@ -63,7 +64,10 @@ export class UserState {
         switchMap((user: DfoLoginUser) => {
           this.authService.updateToken(user.token);
           UserState.updateState(ctx, user);
-          return ctx.dispatch(new RouteNavigate([RouteNames.Root, RouteNames.Home]));
+          return ctx.dispatch([
+            new RouteNavigate([RouteNames.Root, RouteNames.Home]),
+            new RemoveLastError()
+          ]);
         }),
         catchError(errorHandler(ctx, 'login'))
       );
@@ -76,7 +80,10 @@ export class UserState {
         switchMap((user: DfoLoginUser) => {
           this.authService.updateToken(user.token);
           UserState.updateState(ctx, user);
-          return ctx.dispatch(new RouteNavigate([RouteNames.Root, RouteNames.Home]));
+          return ctx.dispatch([
+            new RouteNavigate([RouteNames.Root, RouteNames.Home]),
+            new RemoveLastError(),
+          ]);
         }),
         catchError(errorHandler(ctx, 'login'))
       );

@@ -13,3 +13,7 @@ export class RemoveError {
   constructor(public readonly id: number) {
   }
 }
+
+export class RemoveLastError {
+  static readonly type = '[Error] remove last error';
+}
