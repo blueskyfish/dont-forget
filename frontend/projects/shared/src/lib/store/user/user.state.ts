@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Action, State, StateContext, StateToken } from '@ngxs/store';
+import { Action, Selector, State, StateContext, StateToken } from '@ngxs/store';
 import { DfoLoginUser, DfoUserInfo, DfoUserService } from 'projects/shared/src/lib/backend';
 import { RouteNames } from 'projects/shared/src/lib/common';
 import { AuthService } from 'projects/shared/src/lib/common/service';
@@ -40,6 +40,11 @@ export class UserState {
     private authService: AuthService,
     private userService: DfoUserService,
   ) {
+  }
+
+  @Selector<UserStateModel>()
+  static isAdmin(state: UserStateModel) {
+    return Util.notNil(state.roles) && state.roles.indexOf('admin') >= 0;
   }
 
   @Action(StartApp)

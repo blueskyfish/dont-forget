@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeViewComponent } from 'projects/admin/src/app/dashboard';
+import { HomeViewComponent, RoleAdminGuard } from 'projects/admin/src/app/dashboard';
 import { WithoutProtectedRouteGuard, WithProtectedRouteGuard } from 'projects/shared/src/lib/common/guard';
 import { LoginViewComponent } from 'projects/shared/src/lib/login';
 import { RegisterViewComponent } from 'projects/shared/src/lib/register';
@@ -25,6 +25,7 @@ const routes: Routes = [
     component: HomeViewComponent,
     canActivate: [
       WithProtectedRouteGuard,
+      RoleAdminGuard,
     ]
   },
   {
