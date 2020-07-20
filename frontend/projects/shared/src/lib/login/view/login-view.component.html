@@ -4,12 +4,12 @@
     <div class="picture-box" *ngIf="!errorCode">
       <dfo-picture-list color="#c1c1c1"></dfo-picture-list>
     </div>
-    <bike-message-box
+    <dfo-message-box
       [title]="'app.login-view.error.title' | translate"
       kind="warn"
       (closed)="removeError()"
       *ngIf="errorCode"><p>{{ errorCode | translate }}</p>
-    </bike-message-box>
+    </dfo-message-box>
     <mat-form-field class="form-field">
       <mat-label>{{ 'app.login-view.label.email' | translate }}</mat-label>
       <input type="text" matInput class="form-control" formControlName="email" required>
@@ -23,8 +23,8 @@
         {{ 'app.login-view.command.login' | translate }}
       </button>
     </div>
-    <bike-message-box [title]="'app.login-view.message.title' | translate" kind="info" [withClose]="false">
+    <dfo-message-box [title]="'app.login-view.message.title' | translate" kind="info" [withClose]="false">
       <p><a routerLink="/register">{{ 'app.login-view.message.text' | translate }}</a></p>
-    </bike-message-box>
+    </dfo-message-box>
   </form>
 </section>
