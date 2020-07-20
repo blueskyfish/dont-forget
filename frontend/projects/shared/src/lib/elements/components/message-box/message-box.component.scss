@@ -3,6 +3,7 @@
 
 @include on-host(column) {
   .message-box {
+    @include flex-fixed();
     display: block;
     padding: $half-gap $full-gap 0;
     border-radius: $border-radius-small;

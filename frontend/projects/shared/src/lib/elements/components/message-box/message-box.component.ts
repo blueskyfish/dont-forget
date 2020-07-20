@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export type MessageKind = 'normal' | 'info' | 'warn';
 
 @Component({
-  selector: 'bike-message-box',
+  selector: 'dfo-message-box',
   templateUrl: './message-box.component.html',
   styleUrls: ['./message-box.component.scss']
 })
