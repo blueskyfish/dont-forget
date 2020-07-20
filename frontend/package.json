@@ -14,10 +14,8 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "run-p start:webapp start:admin start:server",
-    "start:server": "wait-on http://localhost:17070/ && wait-on http://localhost:17090/ && ./node_modules/.bin/ws -c ./webserver.config.js",
-    "start:webapp": "ng serve --port 17070 --project=webapp --proxy-config ./backend.proxy.json --baseHref=/app/ --servePath=/ --liveReload=false --watch=true",
-    "start:admin": "ng serve --port 17090 --project=admin --proxy-config ./backend.proxy.json --baseHref=/admin/ --servePath=/ --liveReload=false --watch=true",
+    "start": "wait-on http://localhost:17050/ && npm run start:webapp",
+    "start:webapp": "ng serve --port 17080 --project=webapp --proxy-config ./backend.proxy.json",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
