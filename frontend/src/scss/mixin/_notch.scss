@@ -16,9 +16,10 @@
 }
 
 //
-// Add the notch safe area in the padding (left, right, bottom)
+// Add the notch safe area in the padding (top, left, right, bottom)
 //
 @mixin notch-body() {
+  padding-top: env(safe-area-inset-top);
   padding-left: env(safe-area-inset-left);
   padding-right: env(safe-area-inset-right);
   padding-bottom: env(safe-area-inset-bottom);

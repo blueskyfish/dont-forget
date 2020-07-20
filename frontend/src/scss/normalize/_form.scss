@@ -1,10 +1,11 @@
 
 .form {
   @include display-flex(column);
+  overflow: auto;
   padding: $full-gap;
 
   @include device-large() {
-    width: 750px;
+    width: 768px;
     margin: 0 auto;
   }
 
@@ -16,6 +17,7 @@
 
   .command-bar {
     @include display-flex(row);
+    @include flex-fixed();
     justify-content: flex-end;
     margin-bottom: $full-gap;
 
