@@ -4,7 +4,8 @@ import { Select, Store } from '@ngxs/store';
 import { NavBarClicked } from 'projects/shared/src/lib/elements/components';
 import { ErrorState } from 'projects/shared/src/lib/store/error';
 import { ChangeSidebar, LayoutState, SidebarMode } from 'projects/shared/src/lib/store/layout';
-import { Observable, Subscription } from 'rxjs';
+import { IUserName, UserState } from 'projects/shared/src/lib/store/user';
+import { Observable } from 'rxjs';
 
 @UntilDestroy()
 @Component({
@@ -22,6 +23,9 @@ export class HomeViewComponent implements OnInit {
 
   @Select(ErrorState.errorCount)
   errorCount$: Observable<string>;
+
+  @Select(UserState.getUserName)
+  userName$: Observable<IUserName>;
 
   constructor(private store: Store) { }
 

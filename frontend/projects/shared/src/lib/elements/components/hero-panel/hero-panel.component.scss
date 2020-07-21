@@ -1,0 +1,71 @@
+
+@import "~src/scss/gobals";
+
+:host {
+  display: block;
+
+  .avatar {
+
+    @include absHeight($sidebar-avatar-height-medium);
+    // it is a square (height = width)
+    @include absWidth($sidebar-avatar-height-medium);
+
+    position: relative;
+    cursor: pointer;
+
+    .user-image {
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    .user-name {
+      @include nowrapWithEllipsis();
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      font-size: 1.2rem;
+      padding: $half-gap $four-gap;
+      text-align: center;
+      background-color: rgba(mat-color($mat-grey, 300), .8);
+    }
+
+    @include device-large() {
+      @include display-flex(row);
+      @include flex-fixed();
+      @include absHeight($sidebar-avatar-height-large);
+
+      align-items: center;
+      // border-bottom: $border solid rgba($border-color, .05);
+
+      .user-image {
+        @include absHeight(60px);
+        @include absWidth(60px);
+        @include flex-fixed(60px);
+        position: relative;
+        left: unset;
+        top: unset;
+        right: unset;
+        bottom: unset;
+      }
+
+      .user-name {
+        @include flex-resizable();
+        @include nowrapWithEllipsis();
+        position: relative;
+        left: unset;
+        top: unset;
+        right: unset;
+        bottom: unset;
+        font-size: 1.4rem;
+        line-height: $sidebar-avatar-height-large;
+        padding: 0 $half-gap;
+        text-align: left;
+        background-color: transparent;
+      }
+    }
+  }
+}

@@ -10,6 +10,9 @@
     @include display-flex(column);
     overflow: auto;
 
+    dfo-hero-panel {
+      margin: -$half-gap;
+    }
 
     &.popup {
       @include notch-left($half-gap);

@@ -8,6 +8,7 @@ import { RouteNavigate, StartApp } from 'projects/shared/src/lib/store/actions';
 import { RemoveLastError } from 'projects/shared/src/lib/store/error';
 import { errorHandler } from 'projects/shared/src/lib/store/error/error.handler';
 import { LoginUser, RegisterUser } from 'projects/shared/src/lib/store/user/user.actions';
+import { IUserName } from 'projects/shared/src/lib/store/user/user.models';
 import { EMPTY } from 'rxjs';
 import { catchError, switchMap, tap } from 'rxjs/operators';
 
@@ -45,6 +46,14 @@ export class UserState {
   @Selector<UserStateModel>()
   static isAdmin(state: UserStateModel) {
     return Util.notNil(state.roles) && state.roles.indexOf('admin') >= 0;
+  }
+
+  @Selector<UserStateModel>()
+  static getUserName(state: UserStateModel): IUserName {
+    return Util.notNil(state.id) ? {
+      id: state.id,
+      name: state.name,
+    } : null;
   }
 
   @Action(StartApp)

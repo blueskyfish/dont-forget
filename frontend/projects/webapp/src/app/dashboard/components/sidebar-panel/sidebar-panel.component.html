@@ -1,5 +1,5 @@
 <section class="sidebar" [ngClass]="kind">
   <div class="hero-logo">
-    <dfo-picture-list color="#039be5"></dfo-picture-list>
+    <dfo-hero-panel [user]="userName" (select)="selectHero()"></dfo-hero-panel>
   </div>
 </section>

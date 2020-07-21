@@ -39,6 +39,7 @@
     "@ngx-translate/http-loader": "^6.0.0",
     "@ngxs/storage-plugin": "^3.6.2",
     "@ngxs/store": "^3.6.2",
+    "jdenticon": "^2.2.0",
     "lodash": "^4.17.19",
     "moment": "^2.27.0",
     "rxjs": "~6.6.0",
