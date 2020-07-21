@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { Select, Store } from '@ngxs/store';
 import { NavBarClicked } from 'projects/shared/src/lib/elements/components';
+import { ErrorState } from 'projects/shared/src/lib/store/error';
 import { ChangeSidebar, LayoutState, SidebarMode } from 'projects/shared/src/lib/store/layout';
 import { Observable, Subscription } from 'rxjs';
 
@@ -19,15 +20,21 @@ export class HomeViewComponent implements OnInit {
   @Select(LayoutState.sidebarOpen)
   sidebarOpen$: Observable<boolean>;
 
+  @Select(ErrorState.errorCount)
+  errorCount$: Observable<string>;
+
   constructor(private store: Store) { }
 
   ngOnInit(): void {
   }
 
   navBarClicked(ev: NavBarClicked): void {
-    console.log('> debug: NavBar clicked =>', ev);
     if (ev.type === 'menu') {
       this.store.dispatch(new ChangeSidebar(SidebarMode.Open));
+      return;
+    }
+    if (ev.type === 'errors') {
+      // TODO add popup error message
     }
   }
 

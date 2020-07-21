@@ -1,0 +1,36 @@
+
+@import "~src/scss/gobals";
+
+@include on-host(column) {
+
+  @include absHeight(calc(100% - env(safe-area-inset-bottom) - env(safe-area-inset-top)));
+
+  .sidebar {
+    @include flex-resizable();
+    @include display-flex(column);
+    overflow: auto;
+
+
+    &.popup {
+      @include notch-left($half-gap);
+      @include notch-top($half-gap);
+      @include notch-bottom($half-gap);
+      padding-right: $half-gap;
+
+      .hero-logo {
+        height: 12rem;
+      }
+    }
+
+    &.aside {
+      @include notch-left($half-gap);
+      @include notch-bottom($half-gap);
+      padding-top: $half-gap;
+      padding-right: $half-gap;
+
+      .hero-logo {
+        height: 3rem;
+      }
+    }
+  }
+}

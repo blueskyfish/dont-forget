@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext, StateToken } from '@ngxs/store';
+import { Util } from 'projects/shared/src/lib/common/util';
 import { AppendError, RemoveError, RemoveLastError } from 'projects/shared/src/lib/store/error/error.actions';
 import { ErrorMessage } from 'projects/shared/src/lib/store/error/error.message';
 import { ErrorUtil } from 'projects/shared/src/lib/store/error/error.util';
@@ -26,6 +27,15 @@ export class ErrorState {
   @Selector<ErrorStateModel>()
   static lastError(state: ErrorStateModel) {
     return state.last;
+  }
+
+  @Selector<ErrorStateModel>()
+  static errorCount(state: ErrorStateModel): string {
+    let count = Util.size(state.list);
+    if (Util.notNil(state.last)) {
+      count++;
+    }
+    return count === 0 ? null : `${count}`;
   }
 
 
