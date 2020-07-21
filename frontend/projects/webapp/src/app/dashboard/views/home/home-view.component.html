@@ -1,3 +1,17 @@
-<section class="view-home mat-body">
-  <p>App: home-view works!</p>
-</section>
+<mat-sidenav-container class="view-home">
+  <mat-sidenav class="view-sidebar" mode="over" [opened]="sidebarOpen$ | async" (closed)="closeSidebar()" *ngIf="!(largeMode$ | async)">
+    Popup sidebar
+  </mat-sidenav>
+  <mat-sidenav-content class="view-container">
+    <dfo-nav-bar errors="2" title="Don't Forget" [largeMode]="largeMode$ | async" (navBar)="navBarClicked($event)"></dfo-nav-bar>
+
+    <div class="view-content">
+      <aside class="view-sidebar" *ngIf="largeMode$ | async">
+        Aside Sidebar
+      </aside>
+      <main class="view-main">
+
+      </main>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,32 @@
+
+@import "~src/scss/gobals";
+
+:host {
+  @include flex-fixed();
+
+  .nav-bar {
+    @include display-flex(row);
+    @include notch-top($half-gap);
+    @include notch-left($half-gap);
+    @include notch-right($half-gap);
+    padding-bottom: $half-gap;
+    align-items: center;
+    height: auto;
+
+    .button-box {
+      @include flex-fixed();
+    }
+
+    .title-box {
+      @include flex-resizable();
+      text-align: left;
+      margin: 0;
+    }
+
+    &.large-mode {
+      .title-box {
+        text-align: center;
+      }
+    }
+  }
+}

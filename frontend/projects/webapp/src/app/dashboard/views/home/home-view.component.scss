@@ -7,5 +7,46 @@
     @include flex-resizable();
     @include display-flex(column);
     overflow: auto;
+
+    .view-sidebar {
+      @include absWidth($sidebar-width-medium);
+      @include notch-left($half-gap);
+      @include notch-top($half-gap);
+      @include notch-bottom($half-gap);
+
+      @include device-large() {
+        @include absWidth($sidebar-width-large);
+      }
+    }
+
+    .view-container {
+      @include flex-resizable();
+      @include display-flex(column);
+      overflow: auto;
+
+      .view-content {
+        @include flex-resizable();
+        @include display-flex(row);
+
+        .view-sidebar {
+          @include flex-fixed();
+          @include display-flex(column);
+          @include absWidth(calc(env(safe-area-inset-left) + #{$sidebar-width-large}));
+          overflow: auto;
+          background-color: mat-color($mat-grey, 200);
+          padding-top: $half-gap;
+          padding-right: $half-gap;
+          @include notch-bottom($half-gap);
+          @include notch-left($half-gap);
+        }
+
+        .view-main {
+          @include flex-resizable();
+          @include display-flex(column);
+          overflow: auto;
+        }
+      }
+
+    }
   }
 }

@@ -3,7 +3,7 @@
 //
 
 html, html body {
-  height: 100%;
+  height: calc(env(safe-area-inset-top) + env(safe-area-inset-bottom) + 100%);
   width: 100%;
 }
 
