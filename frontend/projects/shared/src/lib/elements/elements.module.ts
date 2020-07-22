@@ -6,12 +6,11 @@ import { MatRippleModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { SafeHtmlPipe } from 'projects/shared/src/lib/elements/pipes/safe-html.pipe';
-import { HeroPanelComponent, MessageBoxComponent, PictureListComponent } from './components';
+import { MessageBoxComponent, PictureListComponent } from './components';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { AvatarDirective } from 'projects/shared/src/lib/elements/directives/avatar.directive';
 
 const elementComponents: any[] = [
-  HeroPanelComponent,
   MessageBoxComponent,
   NavBarComponent,
   PictureListComponent,

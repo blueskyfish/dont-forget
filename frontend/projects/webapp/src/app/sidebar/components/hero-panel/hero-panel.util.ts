@@ -1,4 +1,4 @@
-import { IUserName } from 'projects/shared/src/lib/store/user/user.models';
+import { IUserName } from 'projects/shared/src/lib/store/user';
 
 export interface IAvatar {
   id: number;

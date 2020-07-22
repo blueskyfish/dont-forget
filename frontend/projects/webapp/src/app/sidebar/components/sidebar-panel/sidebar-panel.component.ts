@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AvatarValue } from 'projects/shared/src/lib/elements/components/hero-panel/hero-panel.util';
+import { Store } from '@ngxs/store';
+import { ChangeSidebar, SidebarMode } from 'projects/shared/src/lib/store/layout';
+import { AvatarValue } from '../hero-panel/hero-panel.util';
 
 export type SidebarPanel = 'popup' | 'aside';
 
@@ -17,12 +19,18 @@ export class SidebarPanelComponent implements OnInit {
   @Input()
   kind: SidebarPanel;
 
-  constructor() { }
+  constructor(private store: Store) { }
 
   ngOnInit(): void {
   }
 
   selectHero(): void {
+    this.closeSidebar();
+  }
 
+  private closeSidebar(): void {
+    if (this.kind === 'popup') {
+      this.store.dispatch(new ChangeSidebar(SidebarMode.Close));
+    }
   }
 }

@@ -5,15 +5,14 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { DfoSharedModule } from 'projects/shared/src/lib/shared.module';
+import { DfoSidebarModule } from 'projects/webapp/src/app/sidebar/sidebar.module';
 import { HomeViewComponent } from './views/home/home-view.component';
-import { SidebarPanelComponent } from './components/sidebar-panel/sidebar-panel.component';
 
 const dashboardViews: any[] = [
   HomeViewComponent,
 ];
 
 const dashboardComponents: any[] = [
-  SidebarPanelComponent,
 ];
 
 
@@ -35,6 +34,7 @@ const dashboardComponents: any[] = [
     MatSidenavModule,
 
     DfoSharedModule,
+    DfoSidebarModule,
   ]
 })
 export class DfoDashboardModule { }

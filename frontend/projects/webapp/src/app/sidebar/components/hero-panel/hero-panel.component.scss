@@ -2,7 +2,10 @@
 @import "~src/scss/gobals";
 
 :host {
+  @include flex-fixed();
   display: block;
+  margin-top: env(safe-area-inset-top);
+  margin-left: env(safe-area-inset-left);
 
   .avatar {
 
@@ -42,9 +45,9 @@
       // border-bottom: $border solid rgba($border-color, .05);
 
       .user-image {
-        @include absHeight(60px);
-        @include absWidth(60px);
-        @include flex-fixed(60px);
+        @include absHeight($sidebar-avatar-height-large);
+        @include absWidth($sidebar-avatar-height-large);
+        @include flex-fixed($sidebar-avatar-height-large);
         position: relative;
         left: unset;
         top: unset;
