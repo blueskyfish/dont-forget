@@ -5,6 +5,16 @@
 
 > A small application for things that should not be forgotten
 
+
+## Requirement
+
+* Backend
+    * NodeJS 12.x (<https://nodejs.org/en/>)
+* Frontend
+    * Angular (<https://angular.io/>)
+    * Angular Material (<https://material.angular.io/>)
+
+
 ## License
 
 ```
