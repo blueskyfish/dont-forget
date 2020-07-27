@@ -1,3 +1,5 @@
 <nav class="sidebar-navbar">
-  &nbsp;
+  <div class="sidebar-item" *ngFor="let action of items">
+    <dfo-sidebar-action [action]="action" (execute)="execute.emit(action)"></dfo-sidebar-action>
+  </div>
 </nav>

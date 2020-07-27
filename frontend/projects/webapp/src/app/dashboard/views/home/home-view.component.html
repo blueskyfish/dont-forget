@@ -1,6 +1,6 @@
 <mat-sidenav-container class="view-home">
   <mat-sidenav class="view-sidebar" mode="over" [opened]="sidebarOpen$ | async" (closed)="closeSidebar()" *ngIf="!(largeMode$ | async)">
-    <dfo-sidebar-panel [userName]="userName$ | async" kind="popup"></dfo-sidebar-panel>
+    <dfo-sidebar-panel kind="popup"></dfo-sidebar-panel>
   </mat-sidenav>
   <mat-sidenav-content class="view-container">
     <dfo-nav-bar
@@ -12,7 +12,7 @@
 
     <div class="view-content">
       <aside class="view-sidebar" *ngIf="largeMode$ | async">
-        <dfo-sidebar-panel [userName]="userName$ | async" kind="aside"></dfo-sidebar-panel>
+        <dfo-sidebar-panel kind="aside"></dfo-sidebar-panel>
       </aside>
       <main class="view-main">
 

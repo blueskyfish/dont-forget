@@ -1,6 +1,6 @@
 <section class="sidebar" [ngClass]="kind">
   <div class="hero-logo">
-    <dfo-hero-panel [user]="userName" (select)="selectHero()"></dfo-hero-panel>
+    <dfo-hero-panel [user]="user$ | async" (select)="selectHero()"></dfo-hero-panel>
   </div>
-  <dfo-sidebar-navbar></dfo-sidebar-navbar>
+  <dfo-sidebar-navbar [items]="items"></dfo-sidebar-navbar>
 </section>

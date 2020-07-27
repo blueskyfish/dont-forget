@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
-import { AvatarValue, HeroPanelUtil } from './hero-panel.util';
+import { AvatarValue, SidebarHeroUtil } from './sidebar-hero.util';
 
 @Component({
   selector: 'dfo-hero-panel',
@@ -13,9 +13,9 @@ import { AvatarValue, HeroPanelUtil } from './hero-panel.util';
       </div>
     </section>
   `,
-  styleUrls: [ './hero-panel.component.scss' ]
+  styleUrls: [ './sidebar-hero.component.scss' ]
 })
-export class HeroPanelComponent implements OnChanges {
+export class SidebarHeroComponent implements OnChanges {
 
   @Input()
   user: AvatarValue;
@@ -35,7 +35,7 @@ export class HeroPanelComponent implements OnChanges {
   }
 
   private updateAvatar(user: AvatarValue) {
-    this.avatar = HeroPanelUtil.toValue(user.id, user.name);
+    this.avatar = SidebarHeroUtil.toValue(user.id, user.name);
   }
 
 

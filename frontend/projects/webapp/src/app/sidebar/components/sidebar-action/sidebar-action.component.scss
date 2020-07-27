@@ -1,0 +1,30 @@
+
+@import "~src/scss/gobals";
+
+:host {
+  display: block;
+  margin: 0;
+
+  .sidebar-action {
+    @include display-flex(row);
+    @include notch-left($half-gap);
+    padding-top: $half-gap;
+    padding-right: $half-gap;
+    padding-bottom: $half-gap;
+    align-items: center;
+
+    .icon {
+      @include flex-fixed();
+      margin-right: $half-gap;
+    }
+
+    .arrow {
+      @include flex-fixed();
+    }
+
+    .title {
+      @include flex-resizable();
+      margin: 0 0 $four-gap 0;
+    }
+  }
+}

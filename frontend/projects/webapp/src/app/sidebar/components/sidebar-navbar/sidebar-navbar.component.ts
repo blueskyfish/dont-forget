@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ISidebarAction } from 'projects/webapp/src/app/sidebar/components/sidebar.models';
 
 @Component({
   selector: 'dfo-sidebar-navbar',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarNavbarComponent implements OnInit {
 
+  @Input()
+  items: ISidebarAction[];
+
+  @Output()
+  execute: EventEmitter<ISidebarAction> = new EventEmitter<ISidebarAction>(true);
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  selectAction(action: ISidebarAction): void {
+
+    this.items.forEach(a => a.activated = a.id === action.id);
+
+    this.execute.emit(action);
+  }
 }

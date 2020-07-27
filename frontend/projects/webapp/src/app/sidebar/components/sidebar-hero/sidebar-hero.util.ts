@@ -7,7 +7,7 @@ export interface IAvatar {
 
 export type AvatarValue = IAvatar | IUserName;
 
-export class HeroPanelUtil {
+export class SidebarHeroUtil {
 
   static toValue(id: number, value: string): string {
     return `[${id}] ${value}`;
