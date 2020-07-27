@@ -45,7 +45,8 @@
             ],
             "scripts": [],
             "allowedCommonJsDependencies": [
-              "lodash"
+              "lodash",
+              "jdenticon"
             ],
             "extractCss": true,
             "stylePreprocessorOptions": {
