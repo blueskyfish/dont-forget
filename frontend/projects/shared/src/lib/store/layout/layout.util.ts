@@ -1,9 +1,21 @@
 import { LayoutHorizontalMode, LayoutVerticalMode } from './layout.models';
 
+/**
+ * Check whether the horizontal mode is {@link LayoutHorizontalMode.Large}
+ *
+ * @param {LayoutHorizontalMode} mode
+ * @returns {boolean}
+ */
 export const isLargeMode = (mode: LayoutHorizontalMode): boolean => {
   return mode === LayoutHorizontalMode.Large;
 };
 
+/**
+ * Check the vertical mode whether it is {@link LayoutVerticalMode.Small}
+ *
+ * @param {LayoutVerticalMode} mode the vertical mode
+ * @returns {boolean}
+ */
 export const isSmallMode = (mode: LayoutVerticalMode): boolean => {
   return mode === LayoutVerticalMode.Small;
 };

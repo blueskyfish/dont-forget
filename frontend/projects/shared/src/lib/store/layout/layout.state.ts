@@ -48,6 +48,17 @@ export class LayoutState {
     return state.sidebarMode === SidebarMode.Open;
   }
 
+  @Selector<LayoutStateModel>()
+  static horizontalMode(state: LayoutStateModel): LayoutHorizontalMode {
+    return state.horizontalMode;
+  }
+
+  @Selector<LayoutStateModel>()
+  static verticalMode(state: LayoutStateModel): LayoutVerticalMode {
+    return state.verticalMode;
+  }
+
+
 
   @Action(UpdateHorizontMode)
   updateHorizontalMode(ctx: StateContext<LayoutStateModel>, {horizontalMode}: UpdateHorizontMode) {

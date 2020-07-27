@@ -11,6 +11,12 @@ export class SidebarNavbarComponent implements OnInit {
   @Input()
   items: ISidebarAction[];
 
+  @Input()
+  small: boolean;
+
+  @Input()
+  large: boolean;
+
   @Output()
   execute: EventEmitter<ISidebarAction> = new EventEmitter<ISidebarAction>(true);
 

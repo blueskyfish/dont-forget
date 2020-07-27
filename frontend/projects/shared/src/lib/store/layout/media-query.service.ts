@@ -2,13 +2,21 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { Injectable, OnDestroy } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { UpdateHorizontMode, UpdateVerticalMode } from 'projects/shared/src/lib/store/layout/layout.actions';
-import { LayoutHorizontalMode, LayoutVerticalMode } from 'projects/shared/src/lib/store/layout/layout.models';
-import { isLargeMode, isSmallMode } from 'projects/shared/src/lib/store/layout/layout.util';
-import { Observable, Subscription } from 'rxjs';
+import {
+  HORIZONTAL_MEDIA_QUERY_LANDSCAPE,
+  HORIZONTAL_MEDIA_QUERY_PORTRAIT,
+  LayoutHorizontalMode,
+  LayoutVerticalMode,
+  VERTICAL_MEDIA_QUERY_LANDSCAPE
+} from 'projects/shared/src/lib/store/layout/layout.models';
+import { Subscription } from 'rxjs';
 import { debounceTime, map } from 'rxjs/operators';
 
 const MEDIA_QUERY_DELAY = 100;
 
+/**
+ * The media query service observe the dimensions of the screen. It update the layout state automatically.
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -28,9 +36,9 @@ export class MediaQueryService implements OnDestroy {
   }
 
   private initialMediaQueryObservers(): void {
+
     this.horizontalMode$ = this.breakpoint.observe([
-      '(min-width: 768px) and (orientation: portrait)',
-      '(min-width: 786px) and (orientation: landscape)'
+      HORIZONTAL_MEDIA_QUERY_PORTRAIT, HORIZONTAL_MEDIA_QUERY_LANDSCAPE,
     ])
       .pipe(
         debounceTime(MEDIA_QUERY_DELAY),
@@ -38,7 +46,7 @@ export class MediaQueryService implements OnDestroy {
       )
       .subscribe((horizontalModeMode: LayoutHorizontalMode) => this.store.dispatch(new UpdateHorizontMode(horizontalModeMode)));
 
-    this.verticalMode$ = this.breakpoint.observe(['(max-height: 512px) and (orientation: landscape)'])
+    this.verticalMode$ = this.breakpoint.observe([VERTICAL_MEDIA_QUERY_LANDSCAPE])
       .pipe(
         debounceTime(MEDIA_QUERY_DELAY),
         map(result => result.matches ? LayoutVerticalMode.Small : LayoutVerticalMode.Normal),

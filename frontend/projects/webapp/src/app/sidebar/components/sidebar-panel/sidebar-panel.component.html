@@ -2,5 +2,9 @@
   <div class="hero-logo">
     <dfo-hero-panel [user]="user$ | async" (select)="selectHero()"></dfo-hero-panel>
   </div>
-  <dfo-sidebar-navbar [items]="items"></dfo-sidebar-navbar>
+  <dfo-sidebar-navbar
+    [items]="items"
+    [small]="verticalSmall$ | async"
+    [large]="horizontalLarge$ | async">
+  </dfo-sidebar-navbar>
 </section>
