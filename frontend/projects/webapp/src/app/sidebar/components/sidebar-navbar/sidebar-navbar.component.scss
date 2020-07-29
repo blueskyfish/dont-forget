@@ -4,8 +4,8 @@
 @include on-host(column) {
 
   .sidebar-navbar {
-    @include flex-resizable();
     @include display-flex(column);
     overflow: auto;
+
   }
 }

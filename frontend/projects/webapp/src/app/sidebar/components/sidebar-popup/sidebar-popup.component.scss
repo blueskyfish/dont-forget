@@ -1,0 +1,21 @@
+
+@import "~src/scss/gobals";
+@import "../sidebar-action";
+
+:host {
+  @include flex-fixed();
+  display: block;
+
+  .popup-button {
+    @include sidebar-action();
+  }
+
+}
+
+.popup-navbar {
+  @include absWidth(calc(env(safe-area-inset-left) + #{$sidebar-width-medium}));
+
+  @include device-large() {
+    @include absWidth(calc(env(safe-area-inset-left) + #{$sidebar-width-large}));
+  }
+}

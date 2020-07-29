@@ -1,0 +1,33 @@
+
+//
+// Set the styles to an action button
+//
+// @see SidebarActionComponent
+// @see SidebarPopupComponent
+//
+@mixin sidebar-action() {
+  @include display-flex(row);
+  @include notch-left($half-gap);
+  padding-top: $half-gap + 3px;
+  padding-right: $half-gap;
+  padding-bottom: $half-gap;
+  align-items: center;
+
+  &.active {
+    background-color: $action-active-background;
+    color: $action-active-text-color;
+  }
+
+  .icon, .arrow {
+    @include flex-fixed();
+  }
+
+  .icon {
+    margin-right: $half-gap;
+  }
+
+  .title {
+    @include flex-resizable();
+    margin: 0 0 $four-gap 0;
+  }
+}

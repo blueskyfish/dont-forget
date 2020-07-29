@@ -1,0 +1,16 @@
+<div [mat-menu-trigger-for]="popupList" matRipple class="popup-button" (menuOpened)="openPopupPanel()" (menuClosed)="closePopupPanel()">
+  <mat-icon [svgIcon]="popupIcon" class="icon"></mat-icon>
+  <span class="title">{{ title }}</span>
+  <mat-icon [svgIcon]="popupArrow" class="action"></mat-icon>
+</div>
+<mat-menu #popupList yPosition="above" xPosition="after">
+  <nav class="popup-navbar">
+    <dfo-sidebar-action
+      [title]="command.title | translate"
+      [icon]="command.icon | translate"
+      [selected]="command.activated"
+      (clicked)="selectCommand(command)"
+      *ngFor="let command of commandList">
+    </dfo-sidebar-action>
+  </nav>
+</mat-menu>

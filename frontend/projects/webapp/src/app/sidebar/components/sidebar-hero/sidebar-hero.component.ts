@@ -9,7 +9,7 @@ import { AvatarValue, SidebarHeroUtil } from './sidebar-hero.util';
         <svg width="100%" height="100%" [dfoAvatar]="avatar"></svg>
       </div>
       <div class="user-name">
-        {{ user.name }}
+        {{ user?.name }}
       </div>
     </section>
   `,
@@ -29,7 +29,7 @@ export class SidebarHeroComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.user) {
+    if (changes.user && changes.user.currentValue) {
       this.updateAvatar(changes.user.currentValue);
     }
   }

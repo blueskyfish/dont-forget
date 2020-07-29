@@ -5,6 +5,7 @@ import { NavBarClicked } from 'projects/shared/src/lib/elements/components';
 import { ErrorState } from 'projects/shared/src/lib/store/error';
 import { ChangeSidebar, LayoutState, SidebarMode } from 'projects/shared/src/lib/store/layout';
 import { Observable } from 'rxjs';
+import { ISidebarAction } from '../../../sidebar/components';
 
 @UntilDestroy()
 @Component({
@@ -22,6 +23,30 @@ export class HomeViewComponent implements OnInit {
 
   @Select(ErrorState.errorCount)
   errorCount$: Observable<string>;
+
+  /**
+   * The list of commands
+   */
+  readonly commandList: ISidebarAction[] = [
+    {
+      icon: 'app.sidebar.command.logout.icon',
+      title: 'app.sidebar.command.logout.title',
+      command: 'logout',
+      activated: false
+    }
+  ];
+
+  /**
+   * The list of actions
+   */
+  readonly actionList: ISidebarAction[] = [
+    {
+      icon: 'home',
+      title: 'Test Account',
+      id: 3421,
+      activated: false,
+    }
+  ];
 
   constructor(private store: Store) { }
 

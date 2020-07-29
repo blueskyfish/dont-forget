@@ -39,6 +39,15 @@
         "title": "Fehler beim Registrieren"
       }
     },
+    "sidebar": {
+      "command-popup": "Aktion",
+      "command": {
+        "logout": {
+          "title": "Abmelden",
+          "icon": "logout"
+        }
+      }
+    },
     "error": {
       "server": {
         "user": {

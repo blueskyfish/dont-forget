@@ -1,6 +1,11 @@
 
 @import "~src/scss/gobals";
 
+//
+// Note:
+// - Sidebar Background are setting on the view component
+//
+
 
 @include on-host(column) {
   height: 100%;
@@ -9,13 +14,33 @@
     @include flex-resizable();
     @include display-flex(column);
     overflow: auto;
+    padding-bottom: calc(env(safe-area-inset-bottom) + env(safe-area-inset-top));
 
     &.popup {
-      padding: 0;
     }
 
     &.aside {
-      padding: 0;
+    }
+
+    .sidebar-hero {
+      order: 1;
+    }
+
+    .sidebar-action-list {
+      @include flex-resizable();
+      order: 10;
+    }
+
+    .sidebar-command-list {
+      @include flex-fixed();
+      @include notch-bottom($half-gap);
+      order: 20;
+    }
+
+    .sidebar-popup {
+      @include flex-fixed();
+      @include notch-bottom($half-gap);
+      order: 30;
     }
   }
 }

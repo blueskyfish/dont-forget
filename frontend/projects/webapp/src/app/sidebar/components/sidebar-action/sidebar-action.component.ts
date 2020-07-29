@@ -1,16 +1,18 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ISidebarAction } from 'projects/webapp/src/app/sidebar/components/sidebar.models';
 
+/**
+ * The component of the sidebar action.
+ */
 @Component({
   selector: 'dfo-sidebar-action',
   template: `
-    <div class="sidebar-action" matRipple (click)="execute.emit()">
-      <div class="icon" *ngIf="action.icon">
-        <mat-icon [svgIcon]="action.icon"></mat-icon>
+    <div class="sidebar-action" [class.active]="selected" matRipple (click)="clickOnAction($event)">
+      <div class="icon" *ngIf="icon">
+        <mat-icon [svgIcon]="icon"></mat-icon>
       </div>
-      <p class="title">{{ action.title }}</p>
+      <p class="title">{{ title }}</p>
       <div class="arrow">
-        <mat-icon svgIcon="chevron-right"></mat-icon>
+        <mat-icon [svgIcon]="arrow"></mat-icon>
       </div>
     </div>
   `,
@@ -18,11 +20,37 @@ import { ISidebarAction } from 'projects/webapp/src/app/sidebar/components/sideb
 })
 export class SidebarActionComponent implements OnInit {
 
+  /**
+   * The icon of the action.
+   *
+   * **Note**: If the value is `null` or `undefined`, the icon is hidden.
+   */
   @Input()
-  action: ISidebarAction;
+  icon: string;
 
+  /**
+   * The title of the action
+   */
+  @Input()
+  title: string;
+
+  /**
+   * The arrow icon on the right side (Default is `chevron-right`).
+   */
+  @Input()
+  arrow: string = 'chevron-right';
+
+  /**
+   * The selected state of the action.
+   */
+  @Input()
+  selected = false;
+
+  /**
+   * The action is clicked.
+   */
   @Output()
-  execute: EventEmitter<void> = new EventEmitter<void>(true);
+  clicked: EventEmitter<void> = new EventEmitter<void>(true);
 
   constructor() { }
 
@@ -30,4 +58,9 @@ export class SidebarActionComponent implements OnInit {
   }
 
 
+  clickOnAction(ev: Event): void {
+    ev.preventDefault();
+    ev.stopPropagation();
+    this.clicked.emit();
+  }
 }

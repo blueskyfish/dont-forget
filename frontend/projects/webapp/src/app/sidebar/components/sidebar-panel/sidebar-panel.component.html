@@ -1,10 +1,34 @@
 <section class="sidebar" [ngClass]="kind">
-  <div class="hero-logo">
+  <div class="sidebar-command-list" *ngIf="hasCommandList">
+    <nav class="sidebar-navbar">
+      <dfo-sidebar-action
+        [title]="command.title | translate"
+        [icon]="command.icon | translate"
+        [selected]="command.activated"
+        (clicked)="executeCommand(command)"
+        *ngFor="let command of commandList">
+      </dfo-sidebar-action>
+    </nav>
+  </div>
+  <div class="sidebar-popup" *ngIf="hasPopupButton">
+    <dfo-sidebar-popup
+      [title]="'app.sidebar.command-popup' | translate"
+      [commandList]="commandList"
+      (execute)="executeCommand($event)">
+    </dfo-sidebar-popup>
+  </div>
+  <div class="sidebar-hero">
     <dfo-hero-panel [user]="user$ | async" (select)="selectHero()"></dfo-hero-panel>
   </div>
-  <dfo-sidebar-navbar
-    [items]="items"
-    [small]="verticalSmall$ | async"
-    [large]="horizontalLarge$ | async">
-  </dfo-sidebar-navbar>
+  <div class="sidebar-action-list">
+    <nav class="sidebar-navbar">
+      <dfo-sidebar-action
+        [title]="action.title"
+        [icon]="action.icon"
+        [selected]="action.activated"
+        (clicked)="executeAction(action)"
+        *ngFor="let action of actionList">
+      </dfo-sidebar-action>
+    </nav>
+  </div>
 </section>

@@ -3,9 +3,9 @@
 export interface ISidebarAction {
 
   /**
-   * Unique id
+   * The action id. It should unique in the list of actions
    */
-  id: number;
+  id?: number;
 
   /**
    * Flag fpr active oder deactivated
@@ -23,11 +23,7 @@ export interface ISidebarAction {
   icon?: string;
 
   /**
-   * The **optional** command
+   * The command of action. It should unique in the list of commands
    */
   command?: string;
 }
-
-export type SidebarItem = ISidebarAction | '-';
-
-export type SidebarItems = SidebarItem[];
