@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext, StateToken } from '@ngxs/store';
-import { Util } from 'projects/shared/src/lib/common/util';
-import { AppendError, RemoveError, RemoveLastError } from 'projects/shared/src/lib/store/error/error.actions';
-import { ErrorMessage } from 'projects/shared/src/lib/store/error/error.message';
-import { ErrorUtil } from 'projects/shared/src/lib/store/error/error.util';
+import { Util } from '../../common/util';
+import { AppendError, RemoveError, RemoveLastError } from './error.actions';
+import { ErrorMessage } from './error.message';
+import { ErrorUtil } from './error.util';
 
 export interface ErrorStateModel {
   last: Partial<ErrorMessage>;

@@ -1,6 +1,6 @@
-import { Util } from 'projects/shared/src/lib/common/util';
-import { ErrorMessage } from 'projects/shared/src/lib/store/error/error.message';
-import { ErrorStateModel } from 'projects/shared/src/lib/store/error/error.state';
+import { Util } from '../../common/util';
+import { ErrorMessage } from './error.message';
+import { ErrorStateModel } from './error.state';
 
 export class ErrorUtil {
 

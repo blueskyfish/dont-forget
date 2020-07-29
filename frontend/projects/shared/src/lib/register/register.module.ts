@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -8,8 +8,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { DfoElementsModule } from 'projects/shared/src/lib/elements/elements.module';
-import { RegisterViewComponent } from 'projects/shared/src/lib/register/view/register-view.component';
+import { DfoElementsModule } from '../elements/elements.module';
+import { RegisterViewComponent } from './view/register-view.component';
 
 
 /**

@@ -1,4 +1,4 @@
-import { RouterPathType } from 'projects/shared/src/lib/common/util';
+import { RouterPathType } from '../common/util';
 
 export class StartApp {
   static readonly type = '[Start] starts application'

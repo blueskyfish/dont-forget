@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext, StateToken } from '@ngxs/store';
 import { DfoLoginUser, DfoUserInfo, DfoUserService } from 'projects/shared/src/lib/backend';
-import { RouteNames } from 'projects/shared/src/lib/common';
-import { AuthService } from 'projects/shared/src/lib/common/service';
-import { Util } from 'projects/shared/src/lib/common/util';
-import { RouteNavigate, StartApp } from 'projects/shared/src/lib/store/actions';
-import { RemoveLastError } from 'projects/shared/src/lib/store/error';
-import { errorHandler } from 'projects/shared/src/lib/store/error/error.handler';
-import { LoginUser, RegisterUser } from 'projects/shared/src/lib/store/user/user.actions';
-import { IUserName } from 'projects/shared/src/lib/store/user/user.models';
 import { EMPTY } from 'rxjs';
 import { catchError, switchMap, tap } from 'rxjs/operators';
+import { RouteNames } from '../../common';
+import { AuthService } from '../../common/service';
+import { Util } from '../../common/util';
+import { RouteNavigate, StartApp } from '../actions';
+import { RemoveLastError } from '../error';
+import { errorHandler } from '../error/error.handler';
+import { LoginUser, RegisterUser } from './user.actions';
+import { IUserName } from './user.models';
 
 
 export interface UserStateModel {

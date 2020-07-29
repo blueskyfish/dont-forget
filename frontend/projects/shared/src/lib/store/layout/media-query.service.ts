@@ -1,16 +1,16 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Injectable, OnDestroy } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { UpdateHorizontMode, UpdateVerticalMode } from 'projects/shared/src/lib/store/layout/layout.actions';
+import { Subscription } from 'rxjs';
+import { debounceTime, map } from 'rxjs/operators';
+import { UpdateHorizontMode, UpdateVerticalMode } from './layout.actions';
 import {
   HORIZONTAL_MEDIA_QUERY_LANDSCAPE,
   HORIZONTAL_MEDIA_QUERY_PORTRAIT,
   LayoutHorizontalMode,
   LayoutVerticalMode,
   VERTICAL_MEDIA_QUERY_LANDSCAPE
-} from 'projects/shared/src/lib/store/layout/layout.models';
-import { Subscription } from 'rxjs';
-import { debounceTime, map } from 'rxjs/operators';
+} from './layout.models';
 
 const MEDIA_QUERY_DELAY = 100;
 

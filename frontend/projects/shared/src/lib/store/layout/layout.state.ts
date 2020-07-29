@@ -1,16 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext, StateToken } from '@ngxs/store';
-import {
-  ChangeSidebar,
-  UpdateHorizontMode,
-  UpdateVerticalMode
-} from 'projects/shared/src/lib/store/layout/layout.actions';
-import {
-  LayoutHorizontalMode,
-  LayoutVerticalMode,
-  SidebarMode
-} from 'projects/shared/src/lib/store/layout/layout.models';
-import { isLargeMode } from 'projects/shared/src/lib/store/layout/layout.util';
+import { ChangeSidebar, UpdateHorizontMode, UpdateVerticalMode } from './layout.actions';
+import { LayoutHorizontalMode, LayoutVerticalMode, SidebarMode } from './layout.models';
+import { isLargeMode, isSmallMode } from './layout.util';
 
 
 export interface LayoutStateModel {
@@ -58,6 +50,10 @@ export class LayoutState {
     return state.verticalMode;
   }
 
+  @Selector()
+  static isVerticalSmall(state: LayoutStateModel): boolean {
+    return isSmallMode(LayoutState.verticalMode(state));
+  }
 
 
   @Action(UpdateHorizontMode)

@@ -1,4 +1,4 @@
-import { ErrorMessage } from 'projects/shared/src/lib/store/error/error.message';
+import { ErrorMessage } from './error.message';
 
 export class AppendError {
   static readonly type = '[Error] append error';

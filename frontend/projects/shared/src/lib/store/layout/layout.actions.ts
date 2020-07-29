@@ -1,8 +1,4 @@
-import {
-  LayoutHorizontalMode,
-  LayoutVerticalMode,
-  SidebarMode
-} from 'projects/shared/src/lib/store/layout/layout.models';
+import { LayoutHorizontalMode, LayoutVerticalMode, SidebarMode } from './layout.models';
 
 export class UpdateHorizontMode {
   static readonly type = '[Layout] update horizontal mode';

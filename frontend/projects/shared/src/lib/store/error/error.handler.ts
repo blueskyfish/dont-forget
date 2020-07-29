@@ -1,10 +1,10 @@
 import { HttpErrorResponse, HttpResponseBase } from '@angular/common/http';
 import { StateContext } from '@ngxs/store';
-import { DfoErrorBody } from 'projects/shared/src/lib/backend';
-import { Util } from 'projects/shared/src/lib/common/util';
-import { AppendError } from 'projects/shared/src/lib/store/error/error.actions';
-import { ErrorMessage } from 'projects/shared/src/lib/store/error/error.message';
 import { Observable } from 'rxjs';
+import { DfoErrorBody } from '../../backend';
+import { Util } from '../../common/util';
+import { AppendError } from './error.actions';
+import { ErrorMessage } from './error.message';
 
 /**
  * The server error group name
