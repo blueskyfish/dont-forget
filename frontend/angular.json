@@ -169,7 +169,7 @@
       },
       "root": "projects/shared",
       "sourceRoot": "projects/shared/src",
-      "prefix": "lib",
+      "prefix": "dfo",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
