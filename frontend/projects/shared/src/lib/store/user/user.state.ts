@@ -9,7 +9,7 @@ import { Util } from '../../common/util';
 import { RouteNavigate, StartApp } from '../actions';
 import { RemoveLastError } from '../error';
 import { errorHandler } from '../error/error.handler';
-import { LoginUser, RegisterUser } from './user.actions';
+import { LoginUser, LogoutUser, RegisterUser } from './user.actions';
 import { IUserName } from './user.models';
 
 
@@ -101,6 +101,19 @@ export class UserState {
         }),
         catchError(errorHandler(ctx, 'login'))
       );
+  }
+
+  @Action(LogoutUser)
+  logoutUser(ctx: StateContext<UserStateModel>) {
+    ctx.setState({
+      id: null,
+      name: null,
+      email: null,
+      roles: null,
+    });
+    this.authService.reset();
+
+    return ctx.dispatch(new RouteNavigate([RouteNames.Root, RouteNames.Login]));
   }
 
 

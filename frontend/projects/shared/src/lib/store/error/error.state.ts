@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext, StateToken } from '@ngxs/store';
 import { Util } from '../../common/util';
+import { LogoutUser } from '../user/user.actions';
 import { AppendError, RemoveError, RemoveLastError } from './error.actions';
 import { ErrorMessage } from './error.message';
 import { ErrorUtil } from './error.util';
@@ -53,6 +54,14 @@ export class ErrorState {
   removeLastError(ctx: StateContext<ErrorStateModel>) {
     ctx.patchState({
       last: null,
+    });
+  }
+
+  @Action(LogoutUser)
+  logoutUser(ctx: StateContext<ErrorStateModel>) {
+    ctx.setState({
+      last: null,
+      list: []
     });
   }
 }

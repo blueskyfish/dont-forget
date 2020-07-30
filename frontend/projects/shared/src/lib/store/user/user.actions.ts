@@ -13,3 +13,7 @@ export class RegisterUser {
   constructor(public readonly payload: DfoRegisterPayload) {
   }
 }
+
+export class LogoutUser {
+  static readonly type = '[User] logout user';
+}

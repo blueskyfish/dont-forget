@@ -48,6 +48,17 @@
         }
       }
     },
+    "dialog": {
+      "logout": {
+        "title": "Abmelden",
+        "message": "Wollen Sie sich abmelden von Ihren Bereich?"
+      }
+    },
+    "command": {
+      "logout": "Ja, Abmelden",
+      "cancel": "Abbrechen",
+      "no": "Nein"
+    },
     "error": {
       "server": {
         "user": {

@@ -1,18 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { Select, Store } from '@ngxs/store';
-import {
-  ChangeSidebar,
-  isLargeMode,
-  isSmallMode,
-  LayoutState,
-  SidebarMode
-} from 'projects/shared/src/lib/store/layout';
-import { IUserName, UserState } from 'projects/shared/src/lib/store/user';
+import { DialogService } from 'projects/shared/src/lib/common/dialog';
+import { Util } from 'projects/shared/src/lib/common/util';
+import { ChangeSidebar, LayoutState, SidebarMode } from 'projects/shared/src/lib/store/layout';
+import { IUserName, LogoutUser, UserState } from 'projects/shared/src/lib/store/user';
 import { ISidebarAction } from 'projects/webapp/src/app/sidebar/components/sidebar.models';
-import { Observable, Subscribable, Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { Util } from '../../../../../../shared/src/lib/common/util';
+import { Observable, Subscription } from 'rxjs';
+import { LogoutDialogComponent, LogoutResult } from '../../dialogs';
 
 /**
  * Sidebar Panel define the place
@@ -111,7 +106,7 @@ export class SidebarPanelComponent implements OnInit {
   @Input()
   commandList: ISidebarAction[] = [];
 
-  constructor(private store: Store) { }
+  constructor(private store: Store, private dialog: DialogService) { }
 
   ngOnInit(): void {
 
@@ -134,6 +129,18 @@ export class SidebarPanelComponent implements OnInit {
     this.commandList.forEach(c => c.activated = c.command === command.command);
     //
     this.closeSidebar();
+
+    if (command.command === 'logout') {
+      this.dialog.open<LogoutResult>(LogoutDialogComponent, {}, {
+        disableClose: true,
+      })
+        .dismiss$
+        .subscribe(result => {
+          result === LogoutResult.Yes && this.store.dispatch(new LogoutUser());
+        });
+    } else {
+
+    }
   }
 
   private closeSidebar(): void {

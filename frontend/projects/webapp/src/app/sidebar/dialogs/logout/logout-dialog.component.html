@@ -1,0 +1,14 @@
+<section class="dialog">
+  <h3 class="dialog-title">{{ 'app.dialog.logout.title' | translate }}</h3>
+  <div class="dialog-content">
+    <p>{{ 'app.dialog.logout.message' | translate }}</p>
+  </div>
+  <div class="dialog-actions">
+    <button mat-raised-button class="button" color="warn" (click)="logout()">
+      {{ 'app.command.logout' | translate }}
+    </button>
+    <button mat-raised-button class="button" (click)="cancel()">
+      {{ 'app.command.no' | translate }}
+    </button>
+  </div>
+</section>
