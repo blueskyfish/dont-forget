@@ -25,13 +25,13 @@ const authServices: any[] = [
  * Authorization and Authentication.
  */
 @Module({})
-export class BikeAuthModule {
+export class DfoAuthModule {
 
   static forRoot(config: IAuthConfig): DynamicModule {
 
     return {
       global: true,
-      module: BikeAuthModule,
+      module: DfoAuthModule,
       providers: [
         {
           provide: CryptoConfig,

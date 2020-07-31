@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { SystemController } from './system.controller';
-import { BikeBusinessModule } from '../business/business.module';
+import { DfoBusinessModule } from '../business/business.module';
 import { LoginController } from './login.controller';
 import { RegisterController } from './register.controller';
 import { UserController } from './user.controller';
@@ -10,7 +10,7 @@ import { UserController } from './user.controller';
  */
 @Module({
   imports: [
-    BikeBusinessModule,
+    DfoBusinessModule,
   ],
   controllers: [
     SystemController,
@@ -19,5 +19,5 @@ import { UserController } from './user.controller';
     UserController,
   ],
 })
-export class BikeControllerModule {
+export class DfoControllerModule {
 }

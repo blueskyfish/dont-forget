@@ -17,7 +17,7 @@ const commonServices: any[] = [
  * **NOTE**: This module is global. Only import **once** in the backend at the {@link AppModule}.
  */
 @Module({})
-export class BikeCommonModule {
+export class BfoCommonModule {
 
   /**
    * Add the database configuration and provides the services.
@@ -42,7 +42,7 @@ export class BikeCommonModule {
 
     return {
       global: true,
-      module: BikeCommonModule,
+      module: BfoCommonModule,
       providers: [
         ...commonProviders,
         ...commonServices,

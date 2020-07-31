@@ -22,5 +22,5 @@ const businessServices: any[] = [
     ...businessServices,
   ]
 })
-export class BikeBusinessModule {
+export class DfoBusinessModule {
 }
