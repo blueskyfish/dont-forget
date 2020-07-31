@@ -3,7 +3,9 @@
     <dfo-sidebar-panel
       kind="popup"
       [commandList]="commandList"
-      [actionList]="actionList">
+      [actionList]="actionList"
+      (command)="executeCommand($event)"
+      (action)="executeAction($event)">
     </dfo-sidebar-panel>
   </mat-sidenav>
   <mat-sidenav-content class="view-container">
@@ -19,7 +21,9 @@
         <dfo-sidebar-panel
           kind="aside"
           [commandList]="commandList"
-          [actionList]="actionList">
+          [actionList]="actionList"
+          (command)="executeCommand($event)"
+          (action)="executeAction($event)">>
         </dfo-sidebar-panel>
       </aside>
       <main class="view-main">

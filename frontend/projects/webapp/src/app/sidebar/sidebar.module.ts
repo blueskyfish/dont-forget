@@ -15,7 +15,6 @@ import {
   SidebarPanelComponent
 } from 'projects/webapp/src/app/sidebar/components';
 import { SidebarPopupComponent } from './components/sidebar-popup/sidebar-popup.component';
-import { LogoutDialogComponent } from './dialogs';
 
 const sidebarComponents: any[] = [
   SidebarActionComponent,
@@ -25,15 +24,10 @@ const sidebarComponents: any[] = [
   SidebarPopupComponent,
 ];
 
-const sidebarDialogs: any[] = [
-  LogoutDialogComponent,
-]
-
 
 @NgModule({
   declarations: [
     ...sidebarComponents,
-    ...sidebarDialogs,
   ],
   imports: [
     CommonModule,
@@ -52,10 +46,6 @@ const sidebarDialogs: any[] = [
   ],
   exports: [
     ...sidebarComponents,
-    ...sidebarDialogs,
   ],
-  entryComponents: [
-    ...sidebarDialogs,
-  ]
 })
 export class DfoSidebarModule { }
