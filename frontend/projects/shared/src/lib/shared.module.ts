@@ -6,6 +6,7 @@ import { DfoLoginModule } from 'projects/shared/src/lib/login';
 import { DfoRegisterModule } from 'projects/shared/src/lib/register';
 import { DfoStoreModule } from 'projects/shared/src/lib/store/store.module';
 import { environment } from 'src/environments/environment';
+import { DfoGatewayModule } from './gateway/gateway.module';
 
 
 
@@ -18,6 +19,9 @@ import { environment } from 'src/environments/environment';
     }),
     DfoBackendModule.forRoot({
       rootUrl: environment.backendApi,
+    }),
+    DfoGatewayModule.forRoot({
+      url: environment.socketUrl,
     }),
     DfoStoreModule,
     DfoElementsModule,
