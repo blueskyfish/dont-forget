@@ -1,5 +1,6 @@
 import { Logger, LogLevel, NotFoundException, ValidationError, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import { WsAdapter } from '@nestjs/platform-ws';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as _ from 'lodash';
 import { DEFAULT_HOST, EnvName, getStageMode, StageMode } from './app.config';
@@ -36,6 +37,9 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     logger: [...logLevels],
   });
+
+  // WS
+  app.useWebSocketAdapter(new WsAdapter(app));
 
   // get the logger (service)
   const logger = app.get(Logger);

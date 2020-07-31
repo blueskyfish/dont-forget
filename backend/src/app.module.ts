@@ -8,6 +8,7 @@ import { BfoCommonModule } from './common/common.module';
 import { fromEnv } from './common/env';
 import { DfoControllerModule } from './controller/controller.module';
 import { UserController } from './controller/user.controller';
+import { DfoGatewayModule } from './gateway/gateway.module';
 
 /**
  * Application module
@@ -27,6 +28,7 @@ import { UserController } from './controller/user.controller';
       pubKeyFilename: fromEnv(EnvName.AuthPubFile).asString,
       digestSecret: fromEnv(EnvName.DigestSecret).asString,
     }),
+    DfoGatewayModule,
     DfoControllerModule,
   ],
 })

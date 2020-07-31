@@ -1,10 +1,10 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import * as path from 'path';
-import { BikeAuthModule } from '../src/auth/auth.module';
+import { DfoAuthModule } from '../src/auth/auth.module';
 import { AuthMiddleware } from '../src/auth/user';
-import { BikeBusinessModule } from '../src/business/business.module';
+import { DfoBusinessModule } from '../src/business/business.module';
 import { SystemService } from '../src/business/system';
-import { BikeCommonModule } from '../src/common/common.module';
+import { BfoCommonModule } from '../src/common/common.module';
 import { LoginController } from '../src/controller/login.controller';
 import { RegisterController } from '../src/controller/register.controller';
 import { SystemController } from '../src/controller/system.controller';
@@ -16,19 +16,19 @@ import { TEST_AUTH_PRI_FILENAME, TEST_AUTH_PUB_FILENAME } from './test.settings'
  */
 @Module({
   imports: [
-    BikeCommonModule.forRoot({
+    BfoCommonModule.forRoot({
       db: {
         type: 'sqlite',
         filename: path.join(process.cwd(), 'data', 'dont-forget.db'),
       },
       appHome: process.cwd(),
     }),
-    BikeAuthModule.forRoot({
+    DfoAuthModule.forRoot({
       priKeyFilename: TEST_AUTH_PRI_FILENAME,
       pubKeyFilename: TEST_AUTH_PUB_FILENAME,
       digestSecret: 'ABC123'
     }),
-    BikeBusinessModule,
+    DfoBusinessModule,
   ],
   controllers: [
     SystemController,
