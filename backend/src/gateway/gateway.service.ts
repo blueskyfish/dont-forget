@@ -36,7 +36,7 @@ export class GatewayService implements OnGatewayConnection, OnGatewayDisconnect,
     this.logger.debug(`Connect: Client => ${++this.users}`, context);
     this.send('dfo.users', {
       users: this.users,
-    }, client);
+    });
   }
 
   handleDisconnect(client: WebSocket): any {
