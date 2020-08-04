@@ -22,6 +22,8 @@ import { DfoGatewayModule } from './gateway/gateway.module';
     }),
     DfoGatewayModule.forRoot({
       url: environment.socketUrl,
+      interval: 10000,
+      maxRetry: 20,
     }),
     DfoStoreModule,
     DfoElementsModule,

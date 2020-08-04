@@ -8,8 +8,12 @@ import {
   WebSocketServer
 } from '@nestjs/websockets';
 import { Server } from 'ws';
+import * as WebSocket from 'ws';
 import { buildGatewayEvent } from './gateway.event';
 
+/**
+ * The logger context name
+ */
 const context = 'Gateway';
 
 @WebSocketGateway()
@@ -24,7 +28,7 @@ export class GatewayService implements OnGatewayConnection, OnGatewayDisconnect,
   }
 
   afterInit(server: any): any {
-    this.logger.debug(`Server: ${JSON.stringify(server)}`, context);
+    this.logger.debug(`Server initialized`, context);
   }
 
 
@@ -32,7 +36,7 @@ export class GatewayService implements OnGatewayConnection, OnGatewayDisconnect,
     this.logger.debug(`Connect: Client => ${++this.users}`, context);
     this.send('dfo.users', {
       users: this.users,
-    });
+    }, client);
   }
 
   handleDisconnect(client: WebSocket): any {
@@ -46,9 +50,21 @@ export class GatewayService implements OnGatewayConnection, OnGatewayDisconnect,
     return `${message}+${this.users}`;
   }
 
-  send<T>(event: string, data: T): void {
+  /**
+   * Send an event data to the clients. If the  third parameter `client` is given, then it is excepted.
+   * @param {string} event
+   * @param {T} data
+   * @param {WebSocket} client
+   */
+  send<T>(event: string, data: T, client?: WebSocket): void {
     const ev = buildGatewayEvent(event, data);
     const value = JSON.stringify(ev);
-    this.server.clients.forEach(ws => ws.send(value));
+    this.server
+      .clients
+      .forEach(ws => {
+        if (ws !== client) {
+          ws.send(value);
+        }
+      });
   }
 }

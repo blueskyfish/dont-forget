@@ -12,7 +12,7 @@ import { GatewayService } from '../../../shared/src/lib/gateway/gateway.service'
 import { AppComponent } from './app.component';
 
 export function gatewaySetup(gateway: GatewayService) {
-  console.log('> Gateway Setup');
+  console.log('[Gateway] Setup');
   gateway.getMessage$()
     .pipe(
       tap(ev => {
@@ -25,7 +25,7 @@ export function gatewaySetup(gateway: GatewayService) {
         }
       })
     )
-    .subscribe(data => console.log('Gateway: data =>', data));
+    .subscribe(data => console.log('[Gateway]: data =>', data));
   return () => {};
 }
 
