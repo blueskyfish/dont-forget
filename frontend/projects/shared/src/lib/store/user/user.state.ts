@@ -116,13 +116,12 @@ export class UserState {
     return ctx.dispatch(new RouteNavigate([RouteNames.Root, RouteNames.Login]));
   }
 
-
   private static updateState(ctx: StateContext<UserStateModel>, user: DfoUserInfo | DfoLoginUser) {
     ctx.setState({
       id: user.id,
       name: user.name,
       email: user.email,
-      roles: user.roles
+      roles: user.roles,
     });
   }
 }

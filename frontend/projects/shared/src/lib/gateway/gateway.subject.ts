@@ -32,7 +32,7 @@ export class GatewaySubject extends Subject<GatewayEvent<any>> {
       url: this.config.url,
       closeObserver: {
         next: (e: CloseEvent) => {
-          console.log('[Gateway] Close websocket =>', e.code, e.reason);
+          console.log('[Gateway] Close websocket => %s', e.code, e.reason);
           this.socket = null;
           this._connectionStatus$.next(false);
         }
@@ -66,7 +66,7 @@ export class GatewaySubject extends Subject<GatewayEvent<any>> {
     this.socket.subscribe(
       (data) => {
         /// when receiving a message, we just send it to our Subject
-        console.log('[Gateway] receive data from Websocket =>', data);
+        // console.log('[Gateway] receive data from Websocket =>', data);
         this.next(data);
       },
       (error) => {

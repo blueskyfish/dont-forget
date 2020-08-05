@@ -4,30 +4,12 @@ import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { Store } from '@ngxs/store';
 import { DfoSharedModule } from 'projects/shared/src/lib/shared.module';
-import { httpLoaderFactory } from 'projects/webapp/src/app/app-config';
+import { gatewaySetup, httpLoaderFactory } from 'projects/webapp/src/app/app-config';
 import { DfoRoutingModule } from 'projects/webapp/src/app/routing.module';
-import { tap } from 'rxjs/operators';
 import { GatewayService } from '../../../shared/src/lib/gateway/gateway.service';
 import { AppComponent } from './app.component';
-
-export function gatewaySetup(gateway: GatewayService) {
-  console.log('[Gateway] Setup');
-  gateway.getMessage$()
-    .pipe(
-      tap(ev => {
-        if (ev.event === 'dfo.users') {
-          gateway.send('dfo.ticker', 'Hallo');
-          return;
-        }
-        if (ev.event === 'dfo.ticker') {
-          console.log('Ticker Result =>', ev.data);
-        }
-      })
-    )
-    .subscribe(data => console.log('[Gateway]: data =>', data));
-  return () => {};
-}
 
 @NgModule({
   declarations: [
@@ -55,7 +37,7 @@ export function gatewaySetup(gateway: GatewayService) {
     {
       provide: APP_INITIALIZER,
       useFactory: gatewaySetup,
-      deps: [GatewayService],
+      deps: [GatewayService, Store],
       multi: true,
     }
   ],

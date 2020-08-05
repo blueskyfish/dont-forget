@@ -7,7 +7,7 @@
     },
     "logLevel": "debug"
   },
-  "/socket/*": {
+  "/gateway/*": {
     "target": "ws://localhost:17050",
     "secure": false,
     "ws": true,
