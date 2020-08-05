@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Action, State, StateContext, StateToken } from '@ngxs/store';
-import { GatewayConnection, GatewayId } from './gateway.actions';
+import { GatewayConnection, GatewayConnect, GatewayDisconnect, GatewayUpdateUser } from './gateway.actions';
 
 /**
  * The model of the gateway communication.
@@ -11,6 +11,11 @@ export interface GatewayStateModel {
    * The id of the connection with the gateway.
    */
   id: string;
+
+  /**
+   * The count of connection
+   */
+  count: number;
 
   /**
    * The connected state
@@ -24,6 +29,7 @@ export const GATEWAY_TOKEN = new StateToken<GatewayStateModel>('gateway');
   name: GATEWAY_TOKEN,
   defaults: {
     id: null,
+    count: 0,
     connected: false,
   }
 })
@@ -33,10 +39,18 @@ export const GATEWAY_TOKEN = new StateToken<GatewayStateModel>('gateway');
 export class GatewayState {
 
 
-  @Action(GatewayId)
-  updateId(ctx: StateContext<GatewayStateModel>, { id }: GatewayId) {
+  @Action(GatewayConnect)
+  updateConnect(ctx: StateContext<GatewayStateModel>, { id, count }: GatewayConnect) {
     ctx.patchState({
       id,
+      count,
+    });
+  }
+
+  @Action([GatewayDisconnect, GatewayUpdateUser])
+  updateDisconnect(ctx: StateContext<GatewayStateModel>, { count }: GatewayDisconnect | GatewayUpdateUser) {
+    ctx.patchState({
+      count,
     });
   }
 
@@ -44,7 +58,6 @@ export class GatewayState {
   updateConnected(ctx: StateContext<GatewayStateModel>, { connected }: GatewayConnection) {
     ctx.patchState({
       connected,
-      id: connected ? ctx.getState().id : null,
     });
   }
 }
