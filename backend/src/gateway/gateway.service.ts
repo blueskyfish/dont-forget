@@ -9,7 +9,8 @@ import {
 } from '@nestjs/websockets';
 import { Server } from 'ws';
 import * as WebSocket from 'ws';
-import { buildGatewayEvent } from './gateway.event';
+import { buildGatewayEvent, GatewayEventName } from './gateway.event';
+import { GatewayUtil } from './gateway.util';
 
 /**
  * The logger context name
@@ -31,16 +32,15 @@ export class GatewayService implements OnGatewayConnection, OnGatewayDisconnect,
     this.logger.debug(`Server initialized`, context);
   }
 
-
   handleConnection(client: WebSocket, ...args): any {
-    this.logger.debug(`Connect: Client => ${++this.users}`, context);
-    this.send('dfo.users', {
-      users: this.users,
-    });
+    const id = GatewayUtil.newId(client);
+    this.logger.debug(`Connect: Client (${id}) => ${++this.users}`, context);
+    client.send(JSON.stringify(buildGatewayEvent('dfo.register', { users: this.users, id })));
   }
 
   handleDisconnect(client: WebSocket): any {
-    this.logger.debug(`Disconnect: Client =>, ${--this.users}`, context);
+    const id = GatewayUtil.getId(client);
+    this.logger.debug(`Disconnect: Client (${id}) => ${--this.users}`, context);
   }
 
   @SubscribeMessage('dfo.ticker')
@@ -56,13 +56,13 @@ export class GatewayService implements OnGatewayConnection, OnGatewayDisconnect,
    * @param {T} data
    * @param {WebSocket} client
    */
-  send<T>(event: string, data: T, client?: WebSocket): void {
+  send<T>(event: GatewayEventName, data: T, client?: WebSocket): void {
     const ev = buildGatewayEvent(event, data);
     const value = JSON.stringify(ev);
     this.server
       .clients
       .forEach(ws => {
-        if (ws !== client) {
+        if (GatewayUtil.getId(ws) !== GatewayUtil.getId(client)) {
           ws.send(value);
         }
       });

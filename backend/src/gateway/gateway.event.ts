@@ -1,10 +1,12 @@
 
+export type GatewayEventName = 'dfo.register' | 'dfo.ticker';
+
 export class GatewayEvent<T> {
-  readonly event: string;
+  readonly event: GatewayEventName;
   readonly data: T;
 }
 
-export function buildGatewayEvent<T>(event: string, data: T): GatewayEvent<T> {
+export function buildGatewayEvent<T>(event: GatewayEventName, data: T): GatewayEvent<T> {
   return {
     event,
     data,
