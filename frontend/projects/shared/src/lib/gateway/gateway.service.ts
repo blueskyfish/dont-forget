@@ -3,59 +3,99 @@ import { Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { Util } from '../common/util';
+import { GatewayConnection } from '../store/gateway';
 import { GatewayConfig } from './gateway.config';
 import { buildGatewayEvent, GatewayEvent, GatewayEventName } from './gateway.event';
 import { GatewaySubject } from './gateway.subject';
 
+/**
+ * The callback function for mapping an incoming gateway event with the redux store
+ */
+export type MapEventFunc<T> = (store: Store, data: T) => any;
+
 @Injectable()
 export class GatewayService implements OnDestroy {
 
-  private eventMapper: { [event: string]: (store: Store, data: any) => void } = {};
+  private eventMapper: Map<GatewayEventName, MapEventFunc<any>> = new Map<GatewayEventName, MapEventFunc<any>>();
 
   private readonly subject$: GatewaySubject;
   private connectState$: Subscription;
+  private messages$: Subscription;
 
   constructor(private store: Store, private config: GatewayConfig) {
     this.subject$ = new GatewaySubject(config)
-    this.connectState$ = this.subject$.connectionStatus$
-      .subscribe((isConnect) => {
 
+    // listen for the change of connection to the backend pver gateway
+    this.connectState$ = this.subject$.connectionStatus$
+      .subscribe((connected) => {
+        this.store.dispatch(new GatewayConnection(connected));
       });
   }
 
   ngOnDestroy() {
+    this.eventMapper.clear();
+    this.eventMapper = null;
+
+    this.messages$.unsubscribe();
     this.connectState$.unsubscribe();
     this.subject$.unsubscribe();
   }
 
-  mapEvent<T>(event: GatewayEventName, actionFunc: (store: Store, data: T) => void) {
-    this.eventMapper[event] = actionFunc;
+  /**
+   * Maps an event to a callback function. If the event is received, then it call this function.
+   *
+   * @param {GatewayEventName} event the event name
+   * @param {MapEventFunc<T>} mappingFunc the callback function
+   * @returns {this}
+   */
+  mapEvent<T>(event: GatewayEventName, mappingFunc: MapEventFunc<T>): this {
+    this.eventMapper.set(event, mappingFunc);
+    return this;
   }
 
-  private getMessage$(): Observable<GatewayEvent<any>> {
-    return this.subject$.asObservable()
-      .pipe(
-        filter(e => Util.notNil(e)),       // filter events not null
-        filter(e => Util.notNil(e.event)), // filter event name not null,
-      );
-  }
+  /**
+   * Process the incoming gateway events
+   */
+  startProcessingIncomeGatewayEvents(): void {
 
-  processHandler(): void {
-    this.getMessage$()
-      .subscribe((ev) => {
+    this.messages$ = this.incomeGatewayEvents()
+      .subscribe(async (ev) => {
+
         console.log('[Gateway] received data =>', ev);
-        if (this.eventMapper[ev.event]) {
-          console.log('[Gateway] event => %s', ev.event);
-          this.eventMapper[ev.event](this.store, ev.data);
+        const func = this.eventMapper.get(ev.event);
+
+        if (Util.notNil(func)) {
+
+          console.log('[Gateway] event "%s" is processing', ev.event);
+          try {
+            await func(this.store, ev.data);
+          } catch (e) {
+            console.log('[Gateway] error @ "%s" =>', ev.event, e);
+          }
+
+        } else {
+          console.log('[Gateway] event "%s" has no mapper function', ev.event);
         }
       });
   }
 
+  /**
+   *
+   * @param {GatewayEventName} event
+   * @param {T} data
+   */
   send<T>(event: GatewayEventName, data: T) {
     console.log('[Gateway] send => %s =>', event, data);
     const value = buildGatewayEvent(event, data);
     this.subject$.send(value);
   }
 
+  private incomeGatewayEvents(): Observable<GatewayEvent<any>> {
+    return this.subject$.asObservable()
+      .pipe(
+        filter(e => Util.notNil(e)),       // filter events not null
+        filter(e => Util.notNil(e.event)), // filter event name not null,
+      );
+  }
 
 }

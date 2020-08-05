@@ -126,6 +126,8 @@ export class GatewaySubject extends Subject<GatewayEvent<any>> {
     if (this._connectionStatus$) {
       this._connectionStatus$.unsubscribe();
     }
+    this.socket.unsubscribe();
+    this.socket = null;
   }
 }
 
