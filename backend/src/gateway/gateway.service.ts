@@ -2,13 +2,14 @@ import { Logger } from '@nestjs/common';
 import {
   MessageBody,
   OnGatewayConnection,
-  OnGatewayDisconnect, OnGatewayInit,
+  OnGatewayDisconnect,
+  OnGatewayInit,
   SubscribeMessage,
   WebSocketGateway,
   WebSocketServer
 } from '@nestjs/websockets';
-import { Server } from 'ws';
 import * as WebSocket from 'ws';
+import { Server } from 'ws';
 import { buildGatewayEvent, GatewayEventName } from './gateway.event';
 import { GatewayUtil } from './gateway.util';
 
@@ -18,7 +19,7 @@ import { GatewayUtil } from './gateway.util';
 const context = 'Gateway';
 
 @WebSocketGateway()
-export class GatewayService implements OnGatewayConnection, OnGatewayDisconnect, OnGatewayInit {
+export class GatewayService implements OnGatewayConnection<WebSocket>, OnGatewayDisconnect<WebSocket>, OnGatewayInit {
 
   @WebSocketServer()
   server: Server;
@@ -32,15 +33,26 @@ export class GatewayService implements OnGatewayConnection, OnGatewayDisconnect,
     this.logger.debug(`Server initialized`, context);
   }
 
-  handleConnection(client: WebSocket, ...args): any {
+  async handleConnection(client: WebSocket, ...args): Promise<any> {
+
+    // create a new uid and put into the client (websocket instance)
     const id = GatewayUtil.newId(client);
     this.logger.debug(`Connect: Client (${id}) => ${++this.users}`, context);
-    client.send(JSON.stringify(buildGatewayEvent('dfo.register', { users: this.users, id })));
+
+    await GatewayUtil.sendClient(client, buildGatewayEvent(GatewayEventName.Connect, { count: this.users, id }));
+
+    // update all other clients
+    const value = buildGatewayEvent(GatewayEventName.UpdateUser, {count: this.users});
+    await GatewayUtil.broadcast(this.server.clients, value, client);
   }
 
-  handleDisconnect(client: WebSocket): any {
+  async handleDisconnect(client: WebSocket): Promise<any> {
+
     const id = GatewayUtil.getId(client);
     this.logger.debug(`Disconnect: Client (${id}) => ${--this.users}`, context);
+
+    const value = buildGatewayEvent(GatewayEventName.Disconnect, { count: this.users })
+    await GatewayUtil.broadcast(this.server.clients, value, client);
   }
 
   @SubscribeMessage('dfo.ticker')
@@ -48,6 +60,12 @@ export class GatewayService implements OnGatewayConnection, OnGatewayDisconnect,
     this.logger.debug(`Ticker ${message}`, context);
 
     return `${message}+${this.users}`;
+  }
+
+  @SubscribeMessage(GatewayEventName.UserId)
+  subscribeUserId(client: WebSocket, {userId}) {
+    const id = GatewayUtil.getId(client);
+    this.logger.debug(`UserId: "${id}" => ${userId}`, context);
   }
 
   /**
